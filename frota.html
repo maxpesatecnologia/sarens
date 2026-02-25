@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Frota | SARENS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand"><span class="brand-s">S</span><span class="brand-arens">ARENS</span></a>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="empresa.html">A Empresa</a>
+                <a href="servicos.html">Serviços</a>
+                <a href="frota.html" class="active">Nossa Frota</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <div class="nav-actions"><a href="contato.html" class="btn btn-primary">Solicitar Orçamento</a></div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="ph ph-x"></i></button>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="empresa.html">A Empresa</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="frota.html" class="active">Nossa Frota</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <section class="page-hero">
+        <div class="page-hero-bg page-hero-frota"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-content" data-aos="fade-up">
+            <div class="eyebrow-tag"><span class="eyebrow-dot"></span> Equipamentos</div>
+            <h1>Nossa <span class="text-accent">Frota</span></h1>
+            <p>Equipamentos de última geração, certificados e prontos para qualquer desafio operacional.</p>
+        </div>
+    </section>
+
+    <div class="breadcrumb-bar">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <i class="ph ph-caret-right"></i>
+            <span>Nossa Frota</span>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <section class="fleet-section">
+        <div class="container">
+            <div class="fleet-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="guindastes">Guindastes</button>
+                <button class="filter-btn" data-filter="munck">Caminhões Munck</button>
+                <button class="filter-btn" data-filter="empilhadeira">Empilhadeiras</button>
+                <button class="filter-btn" data-filter="linha-amarela">Linha Amarela</button>
+            </div>
+
+            <div class="fleet-items">
+                <!-- Guindaste 1 -->
+                <div class="fleet-item-card" data-category="guindastes" data-aos="fade-up" data-aos-delay="0">
+                    <div class="fleet-item-img fleet-item-img-1"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag">Guindaste</span>
+                        <h3>Guindaste AT 100t</h3>
+                        <p>Guindaste todo-terreno com capacidade de 100 toneladas, ideal para içamentos em locais de difícil acesso e terrenos irregulares.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>100 ton</span></div>
+                            <div class="fleet-spec"><strong>Lança máx.</strong><span>52 m</span></div>
+                            <div class="fleet-spec"><strong>Raio máx.</strong><span>36 m</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Guindaste 2 -->
+                <div class="fleet-item-card" data-category="guindastes" data-aos="fade-up" data-aos-delay="50">
+                    <div class="fleet-item-img fleet-item-img-2"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag">Guindaste</span>
+                        <h3>Guindaste RT 200t</h3>
+                        <p>Guindaste sobre pneus de 200 toneladas, alta mobilidade e performance para obras industriais e projetos de infraestrutura.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>200 ton</span></div>
+                            <div class="fleet-spec"><strong>Lança máx.</strong><span>72 m</span></div>
+                            <div class="fleet-spec"><strong>Raio máx.</strong><span>54 m</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Guindaste 3 -->
+                <div class="fleet-item-card" data-category="guindastes" data-aos="fade-up" data-aos-delay="100">
+                    <div class="fleet-item-img fleet-item-img-3"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag">Guindaste</span>
+                        <h3>Guindaste Treliçado 500t</h3>
+                        <p>Guindaste de lança treliçada para os içamentos mais exigentes, com capacidade máxima de 500 toneladas e alcance de exceção.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>500 ton</span></div>
+                            <div class="fleet-spec"><strong>Lança máx.</strong><span>108 m</span></div>
+                            <div class="fleet-spec"><strong>Raio máx.</strong><span>80 m</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Munck 1 -->
+                <div class="fleet-item-card" data-category="munck" data-aos="fade-up" data-aos-delay="0">
+                    <div class="fleet-item-img fleet-item-img-4"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag fleet-tag-munck">Munck</span>
+                        <h3>Caminhão Munck 10t</h3>
+                        <p>Caminhão com guindaste articulado de 10 toneladas, versátil para operações em obras, indústrias e logística especializada.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>10 ton</span></div>
+                            <div class="fleet-spec"><strong>Alcance</strong><span>14 m</span></div>
+                            <div class="fleet-spec"><strong>Tipo</strong><span>Articulado</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Munck 2 -->
+                <div class="fleet-item-card" data-category="munck" data-aos="fade-up" data-aos-delay="50">
+                    <div class="fleet-item-img fleet-item-img-1"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag fleet-tag-munck">Munck</span>
+                        <h3>Caminhão Munck 20t</h3>
+                        <p>Versão pesada com 20 toneladas de capacidade, ideal para projetos de maior porte e operações industriais complexas.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>20 ton</span></div>
+                            <div class="fleet-spec"><strong>Alcance</strong><span>18 m</span></div>
+                            <div class="fleet-spec"><strong>Tipo</strong><span>Articulado</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Empilhadeira -->
+                <div class="fleet-item-card" data-category="empilhadeira" data-aos="fade-up" data-aos-delay="0">
+                    <div class="fleet-item-img fleet-item-img-2"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag fleet-tag-empilhadeira">Empilhadeira</span>
+                        <h3>Empilhadeira 8t</h3>
+                        <p>Empilhadeira a gás ou diesel com capacidade de 8 toneladas para movimentação de cargas pesadas em armazéns e pátios industriais.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Capacidade</strong><span>8 ton</span></div>
+                            <div class="fleet-spec"><strong>Elevação</strong><span>6 m</span></div>
+                            <div class="fleet-spec"><strong>Motor</strong><span>GLP/Diesel</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Linha Amarela -->
+                <div class="fleet-item-card" data-category="linha-amarela" data-aos="fade-up" data-aos-delay="0">
+                    <div class="fleet-item-img fleet-item-img-3"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag fleet-tag-amarela">Linha Amarela</span>
+                        <h3>Escavadeira Hidráulica 30t</h3>
+                        <p>Escavadeira de 30 toneladas para movimentação de volumes elevados de terra, demolição e escavação em canteiros industriais.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Peso Op.</strong><span>30 ton</span></div>
+                            <div class="fleet-spec"><strong>Caçamba</strong><span>1.6 m³</span></div>
+                            <div class="fleet-spec"><strong>Alcance</strong><span>9.8 m</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+
+                <!-- Linha Amarela 2 -->
+                <div class="fleet-item-card" data-category="linha-amarela" data-aos="fade-up" data-aos-delay="50">
+                    <div class="fleet-item-img fleet-item-img-4"></div>
+                    <div class="fleet-item-body">
+                        <span class="fleet-item-tag fleet-tag-amarela">Linha Amarela</span>
+                        <h3>Pá Carregadeira</h3>
+                        <p>Pá carregadeira de alta produção para movimentação de materiais a granel em obras de grande porte e mineração.</p>
+                        <div class="fleet-specs">
+                            <div class="fleet-spec"><strong>Caçamba</strong><span>3.2 m³</span></div>
+                            <div class="fleet-spec"><strong>Peso Op.</strong><span>20 ton</span></div>
+                            <div class="fleet-spec"><strong>Motor</strong><span>220 cv</span></div>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="margin-top:1.5rem;width:100%;justify-content:center">Solicitar este equipamento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" data-aos="fade-up">
+        <div class="container cta-wrapper">
+            <div class="cta-text">
+                <h2>Não encontrou o<br>equipamento <span class="text-accent">ideal</span>?</h2>
+                <p>Fale com nossa equipe. Temos soluções personalizadas para cada tipo de projeto.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="contato.html" class="btn btn-primary btn-lg">Consultar especialista</a>
+                <a href="tel:08006297372" class="cta-phone">
+                    <i class="ph ph-phone"></i>
+                    <div><small>Plantão 24h</small><strong>0800 629 7372</strong></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="brand brand-light"><span class="brand-s">S</span><span class="brand-arens">ARENS</span></a>
+                <p>Excelência e precisão em guindastes, içamentos e equipamentos pesados para os maiores projetos industriais do Brasil.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-col"><h5>Navegação</h5><a href="index.html">Home</a><a href="empresa.html">A Empresa</a><a href="servicos.html">Serviços</a><a href="frota.html">Nossa Frota</a><a href="contato.html">Contato</a></div>
+            <div class="footer-col"><h5>Serviços</h5><a href="servicos.html">Locação de Guindastes</a><a href="servicos.html">Movimentação Industrial</a><a href="servicos.html">Caminhões Munck</a><a href="servicos.html">Linha Amarela</a></div>
+            <div class="footer-col"><h5>Contato</h5><p><i class="ph ph-map-pin"></i> Rod. Industrial, Km 42<br>Polo Industrial, SP</p><p><i class="ph ph-phone"></i> 0800 629 7372</p><p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p></div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

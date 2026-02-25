@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARENS | Soluções em Guindastes e Equipamentos Pesados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Custom cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">SARENS</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand">
+                <img src="img/sarens-logo-original-title-sem-fundo.png" alt="Sarens Logo" class="logo-img">
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="empresa.html">A Empresa</a>
+                <a href="servicos.html">Serviços</a>
+                <a href="frota.html">Nossa Frota</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="contato.html" class="btn btn-primary">Solicitar Orçamento</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="ph ph-x"></i></button>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="empresa.html">A Empresa</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="frota.html">Nossa Frota</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Hero Section com Parallax -->
+    <section id="home" class="hero">
+        <div class="hero-parallax" id="heroParallax"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-noise"></div>
+
+        <div class="container hero-content">
+            <div class="hero-eyebrow" data-aos="fade-down" data-aos-duration="800">
+                <span class="eyebrow-dot"></span>
+                Excelência em Guindastes e Içamentos
+            </div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                Elevamos<br>
+                <span class="hero-title-outline">o Impossível</span><br>
+                ao Alcançável.
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Locação de guindastes e equipamentos pesados com engenharia de precisão, segurança máxima e operadores certificados para os maiores desafios industriais do Brasil.
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <a href="servicos.html" class="btn btn-primary btn-lg">
+                    Ver Serviços <i class="ph ph-arrow-right"></i>
+                </a>
+                <a href="frota.html" class="btn btn-ghost btn-lg">
+                    <i class="ph ph-play-circle"></i> Nossa Frota
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats flutuantes -->
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+            <div class="hero-stat">
+                <span class="hero-stat-number">500t</span>
+                <span class="hero-stat-label">Capacidade máx.</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">1.5k+</span>
+                <span class="hero-stat-label">Projetos entregues</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">24h</span>
+                <span class="hero-stat-label">Disponibilidade</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Strip -->
+    <section class="strip">
+        <div class="container strip-grid">
+            <div class="strip-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="strip-icon"><i class="ph ph-shield-check"></i></div>
+                <div>
+                    <h4>Segurança Máxima</h4>
+                    <p>Certificações ISO e NR-11 rigorosas em toda operação.</p>
+                </div>
+            </div>
+            <div class="strip-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="strip-icon"><i class="ph ph-crane"></i></div>
+                <div>
+                    <h4>Frota Premium</h4>
+                    <p>Guindastes de última geração, revisados e certificados.</p>
+                </div>
+            </div>
+            <div class="strip-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="strip-icon"><i class="ph ph-clock-clockwise"></i></div>
+                <div>
+                    <h4>Atendimento 24h</h4>
+                    <p>Plantão permanente para urgências e projetos críticos.</p>
+                </div>
+            </div>
+            <div class="strip-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="strip-icon"><i class="ph ph-users-three"></i></div>
+                <div>
+                    <h4>Equipe Especializada</h4>
+                    <p>Operadores e engenheiros de içamento altamente treinados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="container about-grid">
+            <div class="about-visual" data-aos="fade-right">
+                <div class="about-img-wrap">
+                    <div class="about-img-main">
+                        <img src="img/sarens-logo-original.png" alt="Sarens Logo">
+                    </div>
+                    <div class="about-img-accent"></div>
+                </div>
+                <div class="about-badge">
+                    <i class="ph ph-medal"></i>
+                    <span>+20 anos de<br>Excelência</span>
+                </div>
+            </div>
+            <div class="about-text" data-aos="fade-left">
+                <div class="eyebrow-tag"><span class="eyebrow-dot"></span> Nossa História</div>
+                <h2 class="section-title">Mais de duas décadas<br>de <span class="text-accent">Precisão</span> em<br>Içamentos.</h2>
+                <p>A SARENS é referência nacional na locação de guindastes e realização de içamentos de cargas especiais. Com engenharia avançada e uma frota rigorosamente mantida, transformamos os maiores desafios industriais em soluções seguras e eficientes.</p>
+                <p>Atendemos indústrias, energia, construção civil e petroquímica com agilidade, responsabilidade técnica e total foco em resultados.</p>
+                <a href="empresa.html" class="btn btn-primary" style="margin-top:2rem">
+                    Conheça a Empresa <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="eyebrow-tag centered"><span class="eyebrow-dot"></span> O que fazemos</div>
+                <h2 class="section-title">Soluções <span class="text-accent">Completas</span><br>em Equipamentos</h2>
+                <p class="section-sub">Do planejamento à execução, entregamos cada projeto com máxima eficiência e segurança certificada.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-img service-img-1"></div>
+                    <div class="service-card-body">
+                        <div class="service-icon"><i class="ph ph-crane"></i></div>
+                        <h3>Locação de Guindastes</h3>
+                        <p>Frota completa de guindastes AT/RT e treliçados com capacidade de 30 a 500 toneladas para qualquer tipo de içamento.</p>
+                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-img service-img-2"></div>
+                    <div class="service-card-body">
+                        <div class="service-icon"><i class="ph ph-arrows-out-line-horizontal"></i></div>
+                        <h3>Movimentação Industrial</h3>
+                        <p>Relocação de maquinários pesados, montagem industrial e rigging especializado com engenharia de precisão milimétrica.</p>
+                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-img service-img-3"></div>
+                    <div class="service-card-body">
+                        <div class="service-icon"><i class="ph ph-truck"></i></div>
+                        <h3>Caminhões Munck</h3>
+                        <p>Versatilidade máxima para carga e descarga com guincho articulado, ideal para obras, indústrias e confinados.</p>
+                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-img service-img-4">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-icon"><i class="ph ph-gear-six"></i></div>
+                        <h3>Linha Amarela</h3>
+                        <p>Escavadeiras, pás carregadeiras e retroescavadeiras de alta performance para terraplanagem e movimentação de materiais.</p>
+                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="services-cta" data-aos="fade-up">
+                <a href="servicos.html" class="btn btn-outline-dark">Ver todos os serviços <i class="ph ph-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Divider -->
+    <div class="parallax-divider" id="parallaxDivider">
+        <div class="parallax-divider-bg" id="parallaxDividerBg"></div>
+        <div class="parallax-divider-overlay"></div>
+        <div class="parallax-divider-content" data-aos="fade-up">
+            <h2>"Cada tonelada içada<br>é uma prova de<br><span class="text-accent">confiança e técnica.</span>"</h2>
+            <a href="contato.html" class="btn btn-primary btn-lg">Solicite um Orçamento</a>
+        </div>
+    </div>
+
+    <!-- Fleet Preview -->
+    <section class="fleet-preview">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="eyebrow-tag centered"><span class="eyebrow-dot"></span> Equipamentos</div>
+                <h2 class="section-title">Frota de <span class="text-accent">Ponta</span></h2>
+                <p class="section-sub">Equipamentos modernos para os maiores desafios operacionais.</p>
+            </div>
+            <div class="fleet-grid">
+                <div class="fleet-card fleet-card-large" data-aos="fade-right">
+                    <div class="fleet-card-bg fleet-bg-1"></div>
+                    <div class="fleet-card-overlay"></div>
+                    <div class="fleet-card-content">
+                        <span class="fleet-tag">Destaque</span>
+                        <h3>Guindastes Táticos AT/RT</h3>
+                        <p>30 a 500 toneladas de capacidade</p>
+                        <a href="frota.html" class="fleet-link">Ver frota <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="fleet-cards-column">
+                    <div class="fleet-card" data-aos="fade-left" data-aos-delay="100">
+                        <div class="fleet-card-bg fleet-bg-2"></div>
+                        <div class="fleet-card-overlay"></div>
+                        <div class="fleet-card-content">
+                            <h3>Caminhões Munck</h3>
+                            <p>Alta versatilidade operacional</p>
+                            <a href="frota.html" class="fleet-link">Ver frota <i class="ph ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="fleet-card" data-aos="fade-left" data-aos-delay="200">
+                        <div class="fleet-card-bg fleet-bg-3"></div>
+                        <div class="fleet-card-overlay"></div>
+                        <div class="fleet-card-content">
+                            <h3>Empilhadeiras Pesadas</h3>
+                            <p>3 a 16 toneladas de capacidade</p>
+                            <a href="frota.html" class="fleet-link">Ver frota <i class="ph ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clientes -->
+    <section class="clients">
+        <div class="container">
+            <div class="clients-header" data-aos="fade-up">
+                <p>Empresas e indústrias líderes que confiam na SARENS</p>
+            </div>
+            <div class="clients-track-wrap">
+                <div class="clients-track">
+                    <div class="client-logo"><i class="ph ph-buildings"></i><span>Votorantim</span></div>
+                    <div class="client-logo"><i class="ph ph-factory"></i><span>CSN Aços</span></div>
+                    <div class="client-logo"><i class="ph ph-wind"></i><span>Renováveis SA</span></div>
+                    <div class="client-logo"><i class="ph ph-bridge"></i><span>Construtora Líder</span></div>
+                    <div class="client-logo"><i class="ph ph-lightning"></i><span>Energias BR</span></div>
+                    <div class="client-logo"><i class="ph ph-drop"></i><span>Petroquímica SP</span></div>
+                    <!-- duplicados p/ loop -->
+                    <div class="client-logo"><i class="ph ph-buildings"></i><span>Votorantim</span></div>
+                    <div class="client-logo"><i class="ph ph-factory"></i><span>CSN Aços</span></div>
+                    <div class="client-logo"><i class="ph ph-wind"></i><span>Renováveis SA</span></div>
+                    <div class="client-logo"><i class="ph ph-bridge"></i><span>Construtora Líder</span></div>
+                    <div class="client-logo"><i class="ph ph-lightning"></i><span>Energias BR</span></div>
+                    <div class="client-logo"><i class="ph ph-drop"></i><span>Petroquímica SP</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="container cta-wrapper">
+            <div class="cta-text">
+                <h2>Pronto para o seu<br><span class="text-accent">próximo projeto</span>?</h2>
+                <p>Entre em contato agora e receba uma proposta técnica personalizada em até 24 horas.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="contato.html" class="btn btn-primary btn-lg">Fale com um especialista</a>
+                <a href="tel:08006297372" class="cta-phone">
+                    <i class="ph ph-phone"></i>
+                    <div>
+                        <small>Plantão 24h</small>
+                        <strong>0800 629 7372</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-s">S</span><span class="brand-arens">ARENS</span>
+                </a>
+                <p>Excelência e precisão em guindastes, içamentos e equipamentos pesados para os maiores projetos industriais do Brasil.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Navegação</h5>
+                <a href="index.html">Home</a>
+                <a href="empresa.html">A Empresa</a>
+                <a href="servicos.html">Serviços</a>
+                <a href="frota.html">Nossa Frota</a>
+                <a href="contato.html">Contato</a>
+            </div>
+            <div class="footer-col">
+                <h5>Serviços</h5>
+                <a href="servicos.html">Locação de Guindastes</a>
+                <a href="servicos.html">Movimentação Industrial</a>
+                <a href="servicos.html">Caminhões Munck</a>
+                <a href="servicos.html">Linha Amarela</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contato</h5>
+                <p><i class="ph ph-map-pin"></i> Rod. Industrial, Km 42<br>Polo Industrial, SP</p>
+                <p><i class="ph ph-phone"></i> 0800 629 7372</p>
+                <p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

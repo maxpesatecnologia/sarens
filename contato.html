@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | SARENS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand"><span class="brand-s">S</span><span class="brand-arens">ARENS</span></a>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="empresa.html">A Empresa</a>
+                <a href="servicos.html">Serviços</a>
+                <a href="frota.html">Nossa Frota</a>
+                <a href="contato.html" class="active">Contato</a>
+            </nav>
+            <div class="nav-actions"><a href="contato.html" class="btn btn-primary">Solicitar Orçamento</a></div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="ph ph-x"></i></button>
+        <nav class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="empresa.html">A Empresa</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="frota.html">Nossa Frota</a>
+            <a href="contato.html" class="active">Contato</a>
+        </nav>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <section class="page-hero page-hero-sm">
+        <div class="page-hero-bg page-hero-contato"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-content" data-aos="fade-up">
+            <div class="eyebrow-tag"><span class="eyebrow-dot"></span> Fale conosco</div>
+            <h1><span class="text-accent">Contato</span></h1>
+            <p>Solicite um orçamento ou tire dúvidas com nossa equipe especializada.</p>
+        </div>
+    </section>
+
+    <div class="breadcrumb-bar">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <i class="ph ph-caret-right"></i>
+            <span>Contato</span>
+        </div>
+    </div>
+
+    <!-- Contato Principal -->
+    <section class="contact-section">
+        <div class="container contact-grid">
+            <!-- Info -->
+            <div class="contact-info" data-aos="fade-right">
+                <div class="eyebrow-tag"><span class="eyebrow-dot"></span> Informações</div>
+                <h2 class="section-title">Vamos iniciar<br>o seu <span class="text-accent">projeto</span></h2>
+                <p>Fale com nossos especialistas em locação de guindastes e equipamentos pesados. Solicite um orçamento ou esclareça dúvidas de forma rápida e eficiente.</p>
+
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="ph ph-map-pin"></i></div>
+                        <div>
+                            <h4>Sede</h4>
+                            <p>Rod. Industrial, Km 42 - Polo Industrial<br>São Paulo, SP - CEP 01000-000</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="ph ph-phone"></i></div>
+                        <div>
+                            <h4>Telefone — Plantão 24h</h4>
+                            <p>0800 629 7372<br>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="ph ph-envelope-simple"></i></div>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p>contato@sarens.com.br<br>comercial@sarens.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="ph ph-whatsapp-logo"></i></div>
+                        <div>
+                            <h4>WhatsApp Comercial</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <div class="contact-form-wrap" data-aos="fade-left">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label">Nome completo ou empresa</label>
+                        <input type="text" class="form-control" placeholder="Seu nome ou razão social" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">E-mail</label>
+                            <input type="email" class="form-control" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Telefone / WhatsApp</label>
+                            <input type="tel" class="form-control" placeholder="(11) 99999-9999" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Assunto</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Selecione um assunto</option>
+                            <option>Locação de Guindastes</option>
+                            <option>Movimentação Industrial</option>
+                            <option>Caminhões Munck</option>
+                            <option>Linha Amarela</option>
+                            <option>Orçamento Personalizado</option>
+                            <option>Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Descreva sua necessidade</label>
+                        <textarea class="form-control" rows="5" placeholder="Conte-nos sobre o seu projeto, local da obra, carga estimada, prazo..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        Enviar Solicitação <i class="ph ph-paper-plane-tilt"></i>
+                    </button>
+                    <p class="form-note"><i class="ph ph-clock"></i> Resposta em até 2 horas em dias úteis.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="map-section" data-aos="fade-up">
+        <div class="container">
+            <div class="map-header">
+                <h3>Nossa <span class="text-accent">Localização</span></h3>
+            </div>
+            <div class="map-placeholder">
+                <div class="map-overlay-text">
+                    <i class="ph ph-map-pin-area"></i>
+                    <p>Rod. Industrial, Km 42 — Polo Industrial, São Paulo, SP</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary">Abrir no Google Maps <i class="ph ph-arrow-square-out"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="brand brand-light"><span class="brand-s">S</span><span class="brand-arens">ARENS</span></a>
+                <p>Excelência e precisão em guindastes, içamentos e equipamentos pesados para os maiores projetos industriais do Brasil.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-col"><h5>Navegação</h5><a href="index.html">Home</a><a href="empresa.html">A Empresa</a><a href="servicos.html">Serviços</a><a href="frota.html">Nossa Frota</a><a href="contato.html">Contato</a></div>
+            <div class="footer-col"><h5>Serviços</h5><a href="servicos.html">Locação de Guindastes</a><a href="servicos.html">Movimentação Industrial</a><a href="servicos.html">Caminhões Munck</a><a href="servicos.html">Linha Amarela</a></div>
+            <div class="footer-col"><h5>Contato</h5><p><i class="ph ph-map-pin"></i> Rod. Industrial, Km 42<br>Polo Industrial, SP</p><p><i class="ph ph-phone"></i> 0800 629 7372</p><p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p></div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
