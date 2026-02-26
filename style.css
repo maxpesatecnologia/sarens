@@ -4,7 +4,7 @@
 
 :root {
   --gold: #C8A84B;
-  --gold-light: #E6C97A;
+  --gold-light: #e4bd51d3;
   --gold-dark: #9A7A2E;
   --black: #080B0E;
   --dark: #0F1318;
@@ -206,6 +206,7 @@ body:hover .cursor-follower { opacity: 1; }
   margin: 0 auto 3rem;
 }
 .section-header { text-align: center; margin-bottom: 4rem; }
+
 .intro-text { font-size: 1.2rem; color: var(--gray); line-height: 1.8; }
 
 /* ── Navbar ─────────────────────────────────── */
@@ -571,10 +572,10 @@ body:hover .cursor-follower { opacity: 1; }
   transition: opacity 0.4s;
 }
 .service-card:hover .service-img::after { opacity: 1; }
-.service-img-1 { background: linear-gradient(135deg, #351a1a, #0d1520); background-image: url('img/guindastes.jpeg'); background-position: center 60%; background-size: 110% auto;}
-.service-img-2 { background: linear-gradient(135deg, #1e2835, #121e2c); background-image: url('img/movimentacao-industrial.png'); background-position: center 60%; background-size: 110% auto;}
-.service-img-3 { background: linear-gradient(135deg, #1c2a30, #0e1a20); background-image: url('img/caminhao-munck.jpg'); background-position: center 60%; background-size: 130% auto; background-repeat: no-repeat;}
-.service-img-4 { background: linear-gradient(135deg, #2a2015, #1a1408); background-image: url('img/escavadeiras-logo.jpg'); background-position: center 60%; background-size: 100% auto;}
+.service-img-1 { background: linear-gradient(135deg, #351a1a, #0d1520); background-image: url('img/guindastes.jpeg'); background-position: center 60%; background-size: cover;}
+.service-img-2 { background: linear-gradient(135deg, #1e2835, #121e2c); background-image: url('img/movimentacao-industrial.png'); background-position: center 60%; background-size: cover;}
+.service-img-3 { background: linear-gradient(135deg, #1c2a30, #0e1a20); background-image: url('img/caminhao-munck.jpg'); background-position: center 60%; background-size: cover; background-repeat: no-repeat;}
+.service-img-4 { background: linear-gradient(135deg, #2a2015, #1a1408); background-image: url('img/escavadeiras-logo.jpg'); background-position: center 60%; background-size: cover;}
 .service-card-body { padding: 1.75rem; }
 .service-icon {
   width: 44px; height: 44px;
@@ -689,7 +690,7 @@ body:hover .cursor-follower { opacity: 1; }
   background-position: center;
   transition: transform 0.6s var(--ease);
 }
-.fleet-bg-1 { background: linear-gradient(135deg, #1a2d45, #0a1828), url(''); }
+.fleet-bg-1 { background: linear-gradient(135deg, #1a2d45, #0a1828); }
 .fleet-bg-2 { background: linear-gradient(135deg, #1e2830, #0e1820); }
 .fleet-bg-3 { background: linear-gradient(135deg, #2a2010, #1a1408); }
 .fleet-card:hover .fleet-card-bg { transform: scale(1.05); }
@@ -1017,16 +1018,41 @@ body:hover .cursor-follower { opacity: 1; }
   gap: 2rem;
 }
 .mvv-card {
-  background: var(--white);
-  border: 1px solid #E8ECF0;
+  /* 1. Base do Card */
+  background-color: var(--white); /* Use color em vez de background */
+  border: 1px solid var(--gold);
   border-radius: var(--r-md);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.089);
   padding: 2.5rem;
-  transition: all 0.3s var(--ease);
+  
+  /* 2. Preparação para o efeito */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.mvv-card::before {
+  content: "";
+  position: absolute;
+  inset: 0; 
+  background: linear-gradient(140deg, var(--white) 40%, rgba(212, 183, 22, 0.37) 90%);
+
+  opacity: 0; 
+  z-index: -1;
+
+  transition: opacity 0.4s ease-in-out;
+}
+
+
 .mvv-card:hover {
-  border-color: var(--gold);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  
+}
+
+.mvv-card:hover::before {
+  opacity: 1; 
 }
 .mvv-icon {
   width: 52px; height: 52px;
@@ -1427,3 +1453,245 @@ select.form-control { appearance: none; cursor: pointer; }
   .cursor, .cursor-follower { display: none; }
   body { cursor: auto; }
 }
+
+/* ================================================================
+   SOLUÇÕES COMPLETAS — Motion Scroll Gallery
+   ================================================================ */
+
+#servicos-section { background: var(--light); }
+
+.svc-gallery-header {
+    padding: 6rem 0 3.5rem;
+    text-align: center;
+}
+
+/* Container: 500vh define o espaço de scroll */
+.svc-gallery-container {
+    height: 500vh;
+    position: relative;
+}
+
+/* Div interno: sticky — fica preso durante todo o scroll */
+.svc-gallery-container > div {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Lista flex: Motion anima o translateX */
+.svc-gallery-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    will-change: transform;
+}
+
+/* Cada item: 100vw × 100vh */
+.svc-gallery-item {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem clamp(1.5rem, 7vw, 10rem);
+}
+
+/* Card visual */
+.svc-gallery-card {
+    width: 100%;
+    max-width: 1060px;
+    /* Altura livre para que o card caiba na viewport com folga */
+    height: min(480px, 68vh);
+    border-radius: 16px;
+    background: var(--white);
+    border: 1px solid #E8ECF0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 55% 45%;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.10);
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.svc-gallery-card:hover {
+    box-shadow: 0 16px 64px rgba(0,0,0,0.16);
+    border-color: var(--gold);
+}
+
+/* Imagem */
+.svc-gallery-img {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--dark2);
+    background-size: cover;
+    background-position: center;
+}
+.svc-gallery-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(8,11,14,0.22) 100%);
+    pointer-events: none;
+}
+
+/* Corpo */
+.svc-gallery-body {
+    padding: 2.5rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.svc-gallery-icon {
+    width: 60px; height: 60px;
+    background: rgba(200,168,75,0.08);
+    border: 1px solid rgba(200,168,75,0.28);
+    border-radius: var(--r-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.svc-gallery-body h3 {
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
+    color: var(--dark);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.svc-gallery-body p {
+    color: var(--gray);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 340px;
+}
+
+.svc-gallery-body .service-link {
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+    margin-top: 0.25rem;
+}
+.svc-gallery-body .service-link:hover { gap: 0.8rem; }
+
+/* ── Dots laterais (dentro do sticky, sem fixed) ─────────────
+   Ficam no lado esquerdo da viewport, verticalmente centrados.
+   Não sobrepõem nem cortam o card.                            */
+.svc-dots-side {
+    position: absolute;
+    left: clamp(1rem, 2.5vw, 2.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+.svc-dot-side {
+    display: block;
+    width: 3px;
+    height: 24px;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.18);
+    transition: height 0.3s var(--ease), background 0.3s;
+}
+.svc-dot-side.active {
+    height: 40px;
+    background: var(--gold);
+}
+
+/* CTA */
+.svc-gallery-cta {
+    text-align: center;
+    padding: 5rem 0;
+    background: var(--light);
+}
+
+/* ── Imagens ─────────────────────────────────────────────────*/
+.img-guindastes   { background-image: url('img/guindastes-img2.jpeg');             background-size: cover; background-position: center 60%; }
+.img-movimentacao { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center 55%; }
+.img-munck        { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.img-escavadeira  { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center 60%; }
+
+.service-img-1    { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center 60%; }
+.service-img-2    { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center 55%; }
+.service-img-3    { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.service-img-4    { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center 60%; }
+.fleet-bg-1       { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
+.fleet-bg-2       { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.fleet-bg-3       { background-image: url('img/empilhadeira.png');       background-size: cover; background-position: center; }
+.fleet-item-img-1 { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
+.fleet-item-img-2 { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
+.fleet-item-img-3 { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.fleet-item-img-4 { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center; }
+.service-detail-img-1 { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
+.service-detail-img-2 { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
+.service-detail-img-3 { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.service-detail-img-4 { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center; }
+.img-hero-empresa     { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center 40%; }
+.img-hero-servicos    { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
+.img-hero-frota       { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.img-hero-contato     { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center 60%; }
+.img-equipe           { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
+.img-parallax-empresa { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
+.img-at100            { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
+.img-rt200            { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center 30%; }
+.img-trelicado500     { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center 70%; }
+.img-munck10          { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
+.img-munck20          { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: left center; }
+.img-empilhadeira     { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center; }
+.img-pa-carregadeira  { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: right center; }
+
+.img-overlay::after, .img-overlay-sm::after, .img-overlay-lg::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+}
+.img-overlay-sm::after { background: linear-gradient(to top, rgba(8,11,14,.50) 0%, rgba(8,11,14,.08) 100%); }
+.img-overlay::after    { background: linear-gradient(to top, rgba(8,11,14,.70) 0%, rgba(8,11,14,.15) 100%); }
+.img-overlay-lg::after { background: linear-gradient(to top, rgba(8,11,14,.85) 0%, rgba(8,11,14,.22) 100%); }
+.img-overlay > *, .img-overlay-sm > *, .img-overlay-lg > * { position: relative; z-index: 2; }
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .svc-gallery-card {
+        grid-template-columns: 1fr 1fr;
+        max-width: 820px;
+        height: min(380px, 62vh);
+    }
+    .svc-gallery-body { padding: 2rem 1.75rem; }
+    .svc-gallery-item { padding: 2rem 3rem; }
+}
+
+@media (max-width: 768px) {
+    .svc-gallery-container { height: auto !important; }
+    .svc-gallery-container > div {
+        position: static !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    .svc-gallery-list {
+        flex-direction: column;
+        transform: none !important;
+        gap: 1.5rem;
+        padding: 0 1.25rem 2rem;
+    }
+    .svc-gallery-item { width: 100% !important; height: auto !important; padding: 0; }
+    .svc-gallery-card { grid-template-columns: 1fr; height: auto; max-width: 100%; }
+    .svc-gallery-img  { height: 200px; }
+    .svc-gallery-body { padding: 1.5rem 1.25rem; }
+    .svc-dots-side    { display: none; }
+    .svc-gallery-cta  { padding: 3rem 0 4rem; }
+}
+

@@ -17,14 +17,14 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- Loader -->
+    <!-- Loader 
     <div class="loader" id="loader">
         <div class="loader-inner">
             <div class="loader-logo">SARENS</div>
             <div class="loader-bar"><div class="loader-progress"></div></div>
         </div>
     </div>
-
+-->
     <!-- Header -->
     <header class="navbar" id="navbar">
         <div class="container nav-content">
@@ -167,57 +167,89 @@
         </div>
     </section>
 
-    <!-- Services Preview -->
-    <section class="services-preview">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
+    <!-- =====================================================
+         SOLUÇÕES COMPLETAS — Motion Scroll Gallery
+         Copiado diretamente do padrão da documentação Motion:
+         https://motion.dev/docs/scroll#pinning
+         
+         .svc-gallery-container  → height:500vh, define o scroll
+         .svc-gallery-container > div → position:sticky, trava
+         .svc-gallery-list       → flex em linha, Motion anima translateX
+         .svc-gallery-item       → 100vw × 100vh cada
+    ====================================================== -->
+    <section id="servicos-section">
+
+        <div class="svc-gallery-header" data-aos="fade-up">
+            <div class="container">
                 <div class="eyebrow-tag centered"><span class="eyebrow-dot"></span> O que fazemos</div>
                 <h2 class="section-title">Soluções <span class="text-accent">Completas</span><br>em Equipamentos</h2>
                 <p class="section-sub">Do planejamento à execução, entregamos cada projeto com máxima eficiência e segurança certificada.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="service-img service-img-1"></div>
-                    <div class="service-card-body">
-                        <div class="service-icon"><i class="ph ph-crane"></i></div>
-                        <h3>Locação de Guindastes</h3>
-                        <p>Frota completa de guindastes AT/RT e treliçados com capacidade de 30 a 500 toneladas para qualquer tipo de içamento.</p>
-                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-img service-img-2"></div>
-                    <div class="service-card-body">
-                        <div class="service-icon"><i class="ph ph-arrows-out-line-horizontal"></i></div>
-                        <h3>Movimentação Industrial</h3>
-                        <p>Relocação de maquinários pesados, montagem industrial e rigging especializado com engenharia de precisão milimétrica.</p>
-                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-img service-img-3"></div>
-                    <div class="service-card-body">
-                        <div class="service-icon"><i class="ph ph-truck"></i></div>
-                        <h3>Caminhões Munck</h3>
-                        <p>Versatilidade máxima para carga e descarga com guincho articulado, ideal para obras, indústrias e confinados.</p>
-                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-img service-img-4">
-                    </div>
-                    <div class="service-card-body">
-                        <div class="service-icon"><i class="ph ph-gear-six"></i></div>
-                        <h3>Linha Amarela</h3>
-                        <p>Escavadeiras, pás carregadeiras e retroescavadeiras de alta performance para terraplanagem e movimentação de materiais.</p>
-                        <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="services-cta" data-aos="fade-up">
-                <a href="servicos.html" class="btn btn-outline-dark">Ver todos os serviços <i class="ph ph-arrow-right"></i></a>
-            </div>
         </div>
+
+        <div class="svc-gallery-container">
+            <div>
+                <ul class="svc-gallery-list">
+
+                    <li class="svc-gallery-item">
+                        <div class="svc-gallery-card">
+                            <div class="svc-gallery-img img-guindastes"></div>
+                            <div class="svc-gallery-body">
+                                <div class="svc-gallery-icon"><i class="ph ph-crane"></i></div>
+                                <h3>Locação de Guindastes</h3>
+                                <p>Frota completa de guindastes AT/RT e treliçados com capacidade de 30 a 500 toneladas para qualquer tipo de içamento.</p>
+                                <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="svc-gallery-item">
+                        <div class="svc-gallery-card">
+                            <div class="svc-gallery-img img-movimentacao"></div>
+                            <div class="svc-gallery-body">
+                                <div class="svc-gallery-icon"><i class="ph ph-arrows-out-line-horizontal"></i></div>
+                                <h3>Movimentação Industrial</h3>
+                                <p>Relocação de maquinários pesados, montagem industrial e rigging especializado com engenharia de precisão milimétrica.</p>
+                                <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="svc-gallery-item">
+                        <div class="svc-gallery-card">
+                            <div class="svc-gallery-img img-munck"></div>
+                            <div class="svc-gallery-body">
+                                <div class="svc-gallery-icon"><i class="ph ph-truck"></i></div>
+                                <h3>Caminhões Munck</h3>
+                                <p>Versatilidade máxima para carga e descarga com guincho articulado, ideal para obras, indústrias e confinados.</p>
+                                <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="svc-gallery-item">
+                        <div class="svc-gallery-card">
+                            <div class="svc-gallery-img img-escavadeira"></div>
+                            <div class="svc-gallery-body">
+                                <div class="svc-gallery-icon"><i class="ph ph-gear-six"></i></div>
+                                <h3>Linha Amarela</h3>
+                                <p>Escavadeiras, pás carregadeiras e retroescavadeiras de alta performance para terraplanagem e movimentação de materiais.</p>
+                                <a href="servicos.html" class="service-link">Ver detalhes <i class="ph ph-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Barra de progresso — igual ao exemplo da Motion docs -->
+            <div class="svc-progress-bar"></div>
+        </div>
+
+        <div class="svc-gallery-cta">
+            <a href="servicos.html" class="btn btn-outline-dark">Ver todos os serviços <i class="ph ph-arrow-right"></i></a>
+        </div>
+
     </section>
 
     <!-- Parallax Divider -->
@@ -352,15 +384,53 @@
                 <h5>Contato</h5>
                 <p><i class="ph ph-map-pin"></i> Rod. Industrial, Km 42<br>Polo Industrial, SP</p>
                 <p><i class="ph ph-phone"></i> 0800 629 7372</p>
-                <p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p>
+                <p><i class="ph ph-envelope-simple"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9dad6d7cdd8cdd6f9cad8cbdcd7ca97dad6d497dbcb">[email&#160;protected]</a></p>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p>
         </div>
     </footer>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="main.js"></script>
+
+    <!--
+        Motion Gallery Script
+        Copiado diretamente do exemplo da documentação:
+        https://motion.dev/docs/scroll#pinning
+        
+        A ÚNICA diferença do exemplo original:
+        - Usamos .svc-gallery-list em vez de .img-group
+        - Usamos .svc-gallery-container em vez de .img-group-container
+        - Usamos .svc-progress-bar em vez de .progress
+        O restante é IDÊNTICO ao código da Motion docs.
+    -->
+    <script type="module">
+        import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@12.34.0/+esm"
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches
+        if (!isMobile) {
+            const items     = document.querySelectorAll(".svc-gallery-item")
+            const container = document.querySelector(".svc-gallery-container")
+
+            // Anima a galeria horizontalmente durante o scroll vertical
+            // Exatamente como no exemplo da Motion docs
+            scroll(
+                animate(".svc-gallery-list", {
+                    transform: ["none", `translateX(-${(items.length - 1) * 100}vw)`],
+                }),
+                { target: container }
+            )
+
+            // Barra de progresso representando o progresso da galeria
+            scroll(
+                animate(".svc-progress-bar", { scaleX: [0, 1] }),
+                { target: container }
+            )
+        }
+    </script>
+
 </body>
 </html>

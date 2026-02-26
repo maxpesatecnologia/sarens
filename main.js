@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Loader ──────────────────────────────────────────
+  
   const loader = document.getElementById('loader');
   if (loader) {
     window.addEventListener('load', () => {
