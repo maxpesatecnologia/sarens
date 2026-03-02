@@ -17,7 +17,9 @@
 
     <header class="navbar" id="navbar">
         <div class="container nav-content">
-            <a href="index.html" class="brand"><span class="brand-s">S</span><span class="brand-arens">ARENS</span></a>
+            <a href="index.html" class="brand">
+                <img src="img/sarens-logo-original-title-sem-fundo.png" alt="Sarens Logo" class="logo-img">
+            </a>       
             <nav class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="empresa.html">A Empresa</a>
@@ -25,7 +27,7 @@
                 <a href="frota.html">Nossa Frota</a>
                 <a href="contato.html" class="active">Contato</a>
             </nav>
-            <div class="nav-actions"><a href="contato.html" class="btn btn-primary">Solicitar Orçamento</a></div>
+            <div class="nav-actions"><a href="#contact-section" class="btn btn-primary">Solicitar Orçamento</a></div>
             <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
         </div>
     </header>
@@ -60,7 +62,7 @@
     </div>
 
     <!-- Contato Principal -->
-    <section class="contact-section">
+    <section class="contact-section" id="contact-section">
         <div class="container contact-grid">
             <!-- Info -->
             <div class="contact-info" data-aos="fade-right">
@@ -73,7 +75,7 @@
                         <div class="contact-card-icon"><i class="ph ph-map-pin"></i></div>
                         <div>
                             <h4>Sede</h4>
-                            <p>Rod. Industrial, Km 42 - Polo Industrial<br>São Paulo, SP - CEP 01000-000</p>
+                            <p>Av. Primavera, 156 - Jardim Primavera<br>Duque de Caxias - RJ, 25215-255</p>
                         </div>
                     </div>
                     <div class="contact-card">
@@ -143,20 +145,34 @@
     </section>
 
     <!-- Mapa -->
-    <section class="map-section" data-aos="fade-up">
-        <div class="container">
-            <div class="map-header">
-                <h3>Nossa <span class="text-accent">Localização</span></h3>
-            </div>
-            <div class="map-placeholder">
-                <div class="map-overlay-text">
-                    <i class="ph ph-map-pin-area"></i>
-                    <p>Rod. Industrial, Km 42 — Polo Industrial, São Paulo, SP</p>
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary">Abrir no Google Maps <i class="ph ph-arrow-square-out"></i></a>
-                </div>
+<section class="map-section" data-aos="fade-up">
+    <div class="container">
+        <div class="map-header">
+            <h3>Nossa <span class="text-accent">Localização</span></h3>
+        </div>
+        
+        <div class="map-wrapper" style="position: relative; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--gold); line-height: 0; box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);">
+            
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.334057639455!2d-43.274579423773195!3d-22.678604329688433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9979cebeb3a81b%3A0x42c39d6182df37be!2sAv.%20Primavera%2C%20156%20-%20Jardim%20Primavera%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025215-255!5e0!3m2!1spt-BR!2sbr!4v1709000000000!5m2!1spt-BR!2sbr" 
+                width="100%" 
+                height="450" 
+                style="border:0; filter: grayscale(1) invert(0.92) contrast(1.2) sepia(0.1);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <div class="map-overlay-text" style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(5, 5, 5, 0.9); padding: 1.5rem; border-radius: var(--r-sm); border-left: 4px solid var(--gold); z-index: 2;">
+                <i class="ph ph-map-pin-area" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+                <p style="color: #fff; margin-bottom: 1rem; font-size: 0.95rem;">Av. Primavera, 156 - Jardim Primavera, Duque de Caxias - RJ, 25215-255</p>
+                <a href="https://maps.app.goo.gl/dX9E9QN3KwKMjPfP8" target="_blank" class="btn btn-primary">
+                    Abrir no Google Maps <i class="ph ph-arrow-square-out" style="color: rgba(0, 0, 0, 0.946);"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <footer class="footer">
         <div class="container footer-grid">
@@ -171,7 +187,7 @@
             </div>
             <div class="footer-col"><h5>Navegação</h5><a href="index.html">Home</a><a href="empresa.html">A Empresa</a><a href="servicos.html">Serviços</a><a href="frota.html">Nossa Frota</a><a href="contato.html">Contato</a></div>
             <div class="footer-col"><h5>Serviços</h5><a href="servicos.html">Locação de Guindastes</a><a href="servicos.html">Movimentação Industrial</a><a href="servicos.html">Caminhões Munck</a><a href="servicos.html">Linha Amarela</a></div>
-            <div class="footer-col"><h5>Contato</h5><p><i class="ph ph-map-pin"></i> Rod. Industrial, Km 42<br>Polo Industrial, SP</p><p><i class="ph ph-phone"></i> 0800 629 7372</p><p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p></div>
+            <div class="footer-col"><h5>Contato</h5><p><i class="ph ph-map-pin"></i>Av. Primavera, 156 - Jardim Primavera<br>Duque de Caxias - RJ, 25215-255</p><p><i class="ph ph-phone"></i> 0800 629 7372</p><p><i class="ph ph-envelope-simple"></i> contato@sarens.com.br</p></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p></div>
     </footer>

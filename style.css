@@ -40,6 +40,7 @@ body {
   overflow-x: hidden;
   line-height: 1.65;
   cursor: none;
+  letter-spacing: 0.02em;
 }
 a { text-decoration: none; color: inherit; transition: all 0.3s var(--ease); }
 img { max-width: 100%; display: block; }
@@ -133,6 +134,9 @@ body:hover .cursor-follower { opacity: 1; }
   background: var(--gold);
   color: var(--black);
 }
+
+
+
 .btn-primary:hover {
   background: var(--gold-light);
   transform: translateY(-2px);
@@ -631,6 +635,7 @@ body:hover .cursor-follower { opacity: 1; }
   width: 100%;
   text-align: center;
   padding: 5rem 2rem;
+  letter-spacing: 0.10em;
 }
 .parallax-divider-content h2 {
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -877,6 +882,16 @@ body:hover .cursor-follower { opacity: 1; }
 }
 .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.85rem; }
 
+.brand-s{
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.brand-arens{
+  color: var(--light);
+  font-weight: 700;
+}
+
 /* ── Page Hero ─────────────────────────────── */
 .page-hero {
   position: relative;
@@ -997,7 +1012,7 @@ body:hover .cursor-follower { opacity: 1; }
 }
 .about-full-text p { color: var(--gray); margin-bottom: 1.2rem; }
 .about-full-img {
-  width: 100%; height: 520px;
+  width: 100%; height: 10%;
   border-radius: var(--r-md);
   background: linear-gradient(135deg, var(--dark2), var(--dark3));
   position: relative;
@@ -1081,23 +1096,47 @@ body:hover .cursor-follower { opacity: 1; }
 }
 .mvv-card ul li i { color: var(--gold); }
 
-/* ── Team ─────────────────────────────────── */
+/* ── Team (Com efeito MVV) ─────────────────────────────────── */
 .team-section { padding: 8rem 0; background: var(--white); }
+
 .team-features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
+
 .team-feature {
   text-align: center;
   padding: 2.5rem 1.5rem;
   border: 1px solid #E8ECF0;
   border-radius: var(--r-md);
-  transition: all 0.3s var(--ease);
+  
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
+.team-feature::before {
+  content: "";
+  position: absolute;
+  inset: 0; 
+  background: linear-gradient(140deg, var(--white) 40%, rgba(212, 183, 22, 0.37) 90%);
+  
+  opacity: 0; 
+  z-index: -1;
+  transition: opacity 0.4s ease-in-out;
+}
+
 .team-feature:hover {
+  transform: translateY(-4px);
   border-color: var(--gold);
-  background: rgba(200,168,75,0.03);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1); /* Sombra leve para destacar a elevação */
+}
+
+.team-feature:hover::before {
+  opacity: 1; 
 }
 .team-feature-icon {
   width: 60px; height: 60px;
@@ -1107,10 +1146,12 @@ body:hover .cursor-follower { opacity: 1; }
   color: var(--gold);
   font-size: 1.7rem;
   margin: 0 auto 1.25rem;
+  position: relative; /* Garante que fique acima do background */
 }
-.team-feature h4 { font-size: 1.1rem; color: var(--dark); margin-bottom: 0.75rem; }
-.team-feature p { color: var(--gray); font-size: 0.9rem; }
 
+.team-feature h4, .team-feature p {
+  position: relative; /* Garante visibilidade sobre o z-index do pseudo-elemento */
+}
 /* ── Service Detail ─────────────────────── */
 .service-detail {
   padding: 6rem 0;
@@ -1152,10 +1193,10 @@ body:hover .cursor-follower { opacity: 1; }
   font-family: var(--font-display);
   font-size: 5rem;
   font-weight: 900;
-  color: rgba(200,168,75,0.15);
+  color: rgba(201, 158, 29, 0.481);
   line-height: 1;
   margin-bottom: 0.5rem;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 .service-detail-text .section-title { margin-top: 0.5rem; }
 .service-detail-text p { color: var(--gray); margin: 1rem 0; }
@@ -1171,34 +1212,64 @@ body:hover .cursor-follower { opacity: 1; }
 .service-features li i { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
 
 /* ── Process Steps ─────────────────────── */
+/* ── Process Section Atualizada ── */
 .process-section { padding: 8rem 0; background: var(--dark); }
 .process-section .section-title { color: var(--white); }
+
 .process-steps {
   display: flex;
   align-items: stretch;
-  gap: 0;
+  gap: 1rem; /* Aumentei um pouco o gap para o scale não sobrepor os vizinhos */
   margin-top: 4rem;
 }
+
 .process-step {
   flex: 1;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   padding: 2.5rem;
   border-radius: var(--r-md);
-  transition: all 0.3s var(--ease);
+  
+  /* Transição suave para todos os elementos internos */
+  transition: 
+    transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+    background 0.4s ease, 
+    box-shadow 0.4s ease;
+  
+  position: relative;
+  z-index: 1;
 }
+
+/* Efeito de Hover: Escala e Inversão de Cores */
 .process-step:hover {
-  background: rgba(200,168,75,0.08);
-  border-color: rgba(200,168,75,0.3);
+  transform: scale(1.05); /* Suavemente para frente */
+  background: var(--gold); /* Card fica claro (Dourado) */
+  border-color: var(--gold);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 10; /* Garante que fique acima das setas e outros cards */
 }
-.process-arrow {
-  display: flex;
-  align-items: center;
-  color: var(--gold);
-  font-size: 1.5rem;
-  padding: 0 0.75rem;
-  flex-shrink: 0;
+
+/* Inversão das letras e números no hover */
+.process-step:hover .process-step-num {
+  color: var(--dark);
+  opacity: 0.8; /* Aumenta a visibilidade do número */
 }
+
+.process-step:hover h4 {
+  color: var(--dark); /* Título fica escuro */
+}
+
+.process-step:hover p {
+  color: rgba(0, 0, 0, 0.7); /* Texto fica escuro e legível */
+}
+
+/* Ajustes de base para garantir a transição nos textos */
+.process-step-num, 
+.process-step h4, 
+.process-step p {
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+
 .process-step-num {
   font-family: var(--font-display);
   font-size: 2.5rem;
@@ -1208,8 +1279,18 @@ body:hover .cursor-follower { opacity: 1; }
   letter-spacing: -0.04em;
   margin-bottom: 0.75rem;
 }
+
 .process-step h4 { color: var(--white); font-size: 1.1rem; margin-bottom: 0.75rem; }
 .process-step p { color: rgba(255,255,255,0.45); font-size: 0.9rem; }
+
+.process-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
 
 /* ── Fleet Items ─────────────────────────── */
 .fleet-section { padding: 6rem 0; }
