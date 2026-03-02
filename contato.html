@@ -102,47 +102,40 @@
                 </div>
             </div>
 
-            <!-- Formulário -->
-            <div class="contact-form-wrap" data-aos="fade-left">
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label class="form-label">Nome completo ou empresa</label>
-                        <input type="text" class="form-control" placeholder="Seu nome ou razão social" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control" placeholder="seu@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Telefone / WhatsApp</label>
-                            <input type="tel" class="form-control" placeholder="(11) 99999-9999" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Assunto</label>
-                        <select class="form-control" required>
-                            <option value="" disabled selected>Selecione um assunto</option>
-                            <option>Locação de Guindastes</option>
-                            <option>Movimentação Industrial</option>
-                            <option>Caminhões Munck</option>
-                            <option>Linha Amarela</option>
-                            <option>Orçamento Personalizado</option>
-                            <option>Outros</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Descreva sua necessidade</label>
-                        <textarea class="form-control" rows="5" placeholder="Conte-nos sobre o seu projeto, local da obra, carga estimada, prazo..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">
-                        Enviar Solicitação <i class="ph ph-paper-plane-tilt"></i>
-                    </button>
-                    <p class="form-note"><i class="ph ph-clock"></i> Resposta em até 2 horas em dias úteis.</p>
-                </form>
-            </div>
+            <form class="contact-form" id="contactForm">
+    <div class="form-group">
+        <label class="form-label">Nome completo ou empresa</label>
+        <input type="text" id="nome" class="form-control" placeholder="Seu nome ou razão social" required>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
         </div>
-    </section>
+        <div class="form-group">
+            <label class="form-label">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" class="form-control" placeholder="(11) 99999-9999" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Assunto</label>
+        <select id="assunto" class="form-control" required>
+            <option value="" disabled selected>Selecione um assunto</option>
+            <option value="Locação de Guindastes">Locação de Guindastes</option>
+            <option value="Movimentação Industrial">Movimentação Industrial</option>
+            <option value="Caminhões Munck">Caminhões Munck</option>
+            <option value="Linha Amarela">Linha Amarela</option>
+            <option value="Orçamento Personalizado">Orçamento Personalizado</option>
+            <option value="Outros">Outros</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Descreva sua necessidade</label>
+        <textarea id="mensagem" class="form-control" rows="5" placeholder="Diga como podemos te ajudar!" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar Solicitação</button>
+</form>
+</div>
 
     <!-- Mapa -->
 <section class="map-section" data-aos="fade-up">
@@ -191,7 +184,6 @@
         </div>
         <div class="footer-bottom"><p>&copy; 2026 SARENS. Todos os direitos reservados. Grupo Maxpesa.</p></div>
     </footer>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="main.js"></script>
 </body>

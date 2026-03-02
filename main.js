@@ -194,19 +194,64 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Form Submit ──────────────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="ph ph-check-circle"></i> Enviado com sucesso!';
-      btn.style.background = '#16A34A';
+
+      // 1. Captura os dados do formulário
+      // Usamos querySelector para pegar os inputs dentro do form
+      const dados = {
+        nome: contactForm.querySelector('input[type="text"]').value,
+        email: contactForm.querySelector('input[type="email"]').value,
+        telefone: contactForm.querySelector('input[type="tel"]').value,
+        assunto: contactForm.querySelector('select').value,
+        mensagem: contactForm.querySelector('textarea').value
+      };
+
+      // Estilo de "Enviando..."
+      btn.innerHTML = '<i class="ph ph-spinner-gap animate-spin"></i> Enviando...';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-        contactForm.reset();
-      }, 4000);
+
+      try {
+        // 2. Envia para a API do Django que criamos
+        const response = await fetch('http://127.0.0.1:8000/api/contatos/enviar/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dados)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Sucesso real: Salvo no banco e E-mail enviado!
+          btn.innerHTML = '<i class="ph ph-check-circle"></i> Enviado com sucesso!';
+          btn.style.background = '#16A34A';
+          
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+            contactForm.reset();
+          }, 4000);
+        } else {
+          throw new Error(result.mensagem || 'Erro no servidor');
+        }
+
+      } catch (error) {
+        console.error('Erro no envio:', error);
+        btn.innerHTML = '<i class="ph ph-x-circle"></i> Erro ao enviar';
+        btn.style.background = '#DC2626';
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      }
     });
   }
 
