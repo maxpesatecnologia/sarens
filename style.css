@@ -1108,7 +1108,7 @@ body:hover .cursor-follower { opacity: 1; }
 .team-feature {
   text-align: center;
   padding: 2.5rem 1.5rem;
-  border: 1px solid #E8ECF0;
+  border: 1px solid var(--gold);;
   border-radius: var(--r-md);
   
   position: relative;
@@ -1404,8 +1404,20 @@ body:hover .cursor-follower { opacity: 1; }
   border: 1px solid #E8ECF0;
   border-radius: var(--r-md);
   transition: all 0.3s var(--ease);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.contact-card:hover { border-color: var(--gold); }
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0; 
+  background: linear-gradient(90deg, var(--white) 40%, rgba(212, 183, 22, 0.37) 90%);
+  
+  opacity: 0; 
+  z-index: -1;
+  transition: opacity 0.4s ease-in-out;
+}
+.contact-card:hover { border-color: var(--gold);  transform: translateY(-4px); box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1); }
+.contact-card:hover::before { opacity: 1; } 
 .contact-card-icon {
   width: 44px; height: 44px;
   background: rgba(200,168,75,0.1);
@@ -1463,7 +1475,7 @@ select.form-control { appearance: none; cursor: pointer; }
 }
 
 /* Map */
-.map-section { padding: 0 0 7rem; margin-top: 70px; }
+.map-section { padding: 0 0 7rem; }
 .map-header { text-align: center; margin-bottom: 2rem; }
 .map-header h3 { font-size: 1.8rem; color: var(--dark); }
 .map-placeholder {

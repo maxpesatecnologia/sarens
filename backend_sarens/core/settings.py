@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',                          # ← deve vir ANTES do django.contrib.admin
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -105,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -123,9 +126,91 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'maxpesa.tecnologia@gmail.com'  # Seu e-mail do Gmail
+EMAIL_HOST_USER = 'maxpesa.tecnologia@gmail.com'
 EMAIL_HOST_PASSWORD = 'kazv ulkb kuzx ulpt'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# ================================================================
+#  UNFOLD — Tema SARENS (preto e dourado)
+# ================================================================
+UNFOLD = {
+    "SITE_TITLE":  "SARENS",
+    "SITE_HEADER": "SARENS — Painel Operacional",
+    "SITE_URL":    "/",
+    "SITE_SYMBOL": "settings",
+
+    "COLORS": {
+        "primary": {
+            "50":  "250 243 224",
+            "100": "245 231 179",
+            "200": "240 214 128",
+            "300": "232 193 85",
+            "400": "220 172 60",
+            "500": "200 168 75",
+            "600": "180 148 55",
+            "700": "150 120 40",
+            "800": "110 88 28",
+            "900": "70 55 15",
+            "950": "40 30 5",
+        },
+    },
+
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Comercial",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Leads",
+                        "icon":  "inbox",
+                        "link":  "/admin/contatos/lead/",
+                    },
+                    {
+                        "title": "Operações",
+                        "icon":  "engineering",
+                        "link":  "/admin/contatos/operacao/",
+                    },
+                    {
+                        "title": "Financeiro",
+                        "icon":  "payments",
+                        "link":  "/admin/contatos/financeiro/",
+                    },
+                ],
+            },
+            {
+                "title": "Frota",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Equipamentos",
+                        "icon":  "construction",
+                        "link":  "/admin/contatos/equipamento/",
+                    },
+                ],
+            },
+            {
+                "title": "Equipe",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Analistas",
+                        "icon":  "group",
+                        "link":  "/admin/contatos/perfilanalista/",
+                    },
+                    {
+                        "title": "Usuários",
+                        "icon":  "manage_accounts",
+                        "link":  "/admin/auth/user/",
+                    },
+                ],
+            },
+        ],
+    },
+}

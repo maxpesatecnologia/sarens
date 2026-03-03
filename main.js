@@ -2,6 +2,23 @@
    SARENS — Main JS (Parallax, Cursor, Loader, Animations)
    ============================================================ */
 
+
+   // --- Máscara de Telefone (DDD) e limitador ---
+const telInput = document.getElementById('telefone');
+if (telInput) {
+    telInput.addEventListener('input', (e) => {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+}
+
+// --- Função de Validação de E-mail ---
+function validarEmail(email) {
+    // Exige algo@algo.com ou domínios específicos
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── AOS Init ────────────────────────────────────────
@@ -191,61 +208,130 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── Subcategoria dinâmica ────────────────────────────
+  const SUBCATEGORIAS = {
+    guindastes: [
+      { value: 'at-100',  label: 'Guindaste AT 100t' },
+      { value: 'rt-200',  label: 'Guindaste RT 200t' },
+      { value: 'tre-500', label: 'Guindaste Treliçado 500t' },
+    ],
+    munck: [
+      { value: 'munck-10', label: 'Caminhão Munck 10t' },
+      { value: 'munck-20', label: 'Caminhão Munck 20t' },
+    ],
+    empilhadeira: [
+      { value: 'empilh-8', label: 'Empilhadeira 8t' },
+    ],
+    'linha-amarela': [
+      { value: 'escav-30', label: 'Escavadeira Hidráulica 30t' },
+      { value: 'pa-carg',  label: 'Pá Carregadeira' },
+    ],
+    outro: [],
+  };
+
+  const categoriaSelect    = document.getElementById('categoria');
+  const subcategoriaSelect = document.getElementById('subcategoria');
+  const subcategoriaGroup  = document.getElementById('subcategoria-group');
+
+  if (categoriaSelect) {
+    categoriaSelect.addEventListener('change', () => {
+      const categoria = categoriaSelect.value;
+      const opcoes    = SUBCATEGORIAS[categoria] || [];
+
+      // Limpa opções anteriores
+      subcategoriaSelect.innerHTML = '<option value="" disabled selected>Selecione o equipamento</option>';
+
+      if (opcoes.length > 0) {
+        opcoes.forEach(op => {
+          const opt    = document.createElement('option');
+          opt.value    = op.value;
+          opt.textContent = op.label;
+          subcategoriaSelect.appendChild(opt);
+        });
+        subcategoriaGroup.style.display = 'block';
+      } else {
+        // "Outro" — esconde subcategoria
+        subcategoriaGroup.style.display = 'none';
+      }
+    });
+  }
+
   // ── Form Submit ──────────────────────────────────────
   const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
+
+
+    if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
+      
+      // Captura os valores no momento do clique
+      const emailValue = document.getElementById('email').value;
+      const telValue = document.getElementById('telefone').value;
 
-      // 1. Captura os dados do formulário
-      // Usamos querySelector para pegar os inputs dentro do form
+      // 1. Validação de E-mail
+      if (!validarEmail(emailValue)) {
+        btn.innerHTML = '<i class="ph ph-warning"></i> E-mail inválido';
+        btn.style.background = '#EAB308'; 
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+        }, 3000);
+        return; 
+      }
+
+      // 2. Validação de Telefone (Mínimo de dígitos)
+      if (telValue.replace(/\D/g, '').length < 10) {
+        alert("Por favor, insira um telefone válido com DDD.");
+        return;
+      }
+
+      // 3. Preparação dos dados
+      const categoriaEl = document.getElementById('categoria');
+      const subcategoriaEl = document.getElementById('subcategoria');
+
       const dados = {
-        nome: contactForm.querySelector('input[type="text"]').value,
-        email: contactForm.querySelector('input[type="email"]').value,
-        telefone: contactForm.querySelector('input[type="tel"]').value,
-        assunto: contactForm.querySelector('select').value,
-        mensagem: contactForm.querySelector('textarea').value
+        nome: document.getElementById('nome').value,
+        email: emailValue,
+        telefone: telValue,
+        categoria: categoriaEl ? categoriaEl.value : 'outro',
+        subcategoria: subcategoriaEl && subcategoriaEl.value ? subcategoriaEl.value : 'outro',
+        mensagem: document.getElementById('mensagem').value,
       };
 
-      // Estilo de "Enviando..."
+      // 4. Estado de envio
       btn.innerHTML = '<i class="ph ph-spinner-gap animate-spin"></i> Enviando...';
       btn.disabled = true;
 
       try {
-        // 2. Envia para a API do Django que criamos
         const response = await fetch('http://127.0.0.1:8000/api/contatos/enviar/', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dados)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados),
         });
 
         const result = await response.json();
 
         if (response.ok) {
-          // Sucesso real: Salvo no banco e E-mail enviado!
           btn.innerHTML = '<i class="ph ph-check-circle"></i> Enviado com sucesso!';
-          btn.style.background = '#16A34A';
+          btn.style.background = '#16A34A'; 
+          contactForm.reset();
+          if (subcategoriaGroup) subcategoriaGroup.style.display = 'none';
           
           setTimeout(() => {
             btn.innerHTML = originalText;
             btn.style.background = '';
             btn.disabled = false;
-            contactForm.reset();
           }, 4000);
         } else {
           throw new Error(result.mensagem || 'Erro no servidor');
         }
-
       } catch (error) {
         console.error('Erro no envio:', error);
         btn.innerHTML = '<i class="ph ph-x-circle"></i> Erro ao enviar';
-        btn.style.background = '#DC2626';
-        
+        btn.style.background = '#DC2626'; 
         setTimeout(() => {
           btn.innerHTML = originalText;
           btn.style.background = '';
@@ -253,6 +339,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
       }
     });
+  }
+
+  // ── Pré-seleciona categoria/subcategoria via URL params ─
+  // Ex: contato.html?categoria=guindastes&subcategoria=at-100
+  if (categoriaSelect) {
+    const params      = new URLSearchParams(window.location.search);
+    const paramCat    = params.get('categoria');
+    const paramSub    = params.get('subcategoria');
+
+    if (paramCat) {
+      categoriaSelect.value = paramCat;
+      categoriaSelect.dispatchEvent(new Event('change')); // popula subcategoria
+
+      if (paramSub && subcategoriaSelect) {
+        // Aguarda o DOM atualizar as opções
+        setTimeout(() => {
+          subcategoriaSelect.value = paramSub;
+        }, 50);
+      }
+
+      // Rola suavemente até o formulário
+      const form = document.getElementById('contact-section');
+      if (form) setTimeout(() => form.scrollIntoView({ behavior: 'smooth' }), 300);
+    }
   }
 
   // ── Smooth Hover Cards ───────────────────────────────
