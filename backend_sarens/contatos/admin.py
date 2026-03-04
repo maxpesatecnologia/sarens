@@ -1,6 +1,30 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from .models import PerfilAnalista, Equipamento, Lead, Operacao, Financeiro
+
+
+# ================================================================
+#  INLINES
+# ================================================================
+
+class FinanceiroInline(admin.StackedInline):
+    model        = Financeiro
+    extra        = 1
+    max_num      = 1
+    can_delete   = False
+    verbose_name = 'Financeiro da Operação'
+    fields       = ['receita', 'despesa', 'status_pgto', 'data_pgto', 'observacoes']
+
+
+class OperacaoInline(admin.StackedInline):
+    model        = Operacao
+    extra        = 0
+    can_delete   = True
+    verbose_name = 'Operação'
+    verbose_name_plural = 'Operações'
+    fields       = ['equipamento', 'data_inicio', 'data_fim', 'turno', 'local_operacao', 'observacoes']
+    show_change_link = True
 
 
 # ================================================================
@@ -29,26 +53,39 @@ class EquipamentoAdmin(admin.ModelAdmin):
     @admin.display(description='Ativo')
     def ativo_badge(self, obj):
         if obj.ativo:
-            return format_html('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">✓ Ativo</span>')
-        return format_html('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">✗ Inativo</span>')
+            return mark_safe('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">✓ Ativo</span>')
+        return mark_safe('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">✗ Inativo</span>')
 
 
 # ================================================================
-#  LEAD
+#  LEAD — com inlines de Operação
 # ================================================================
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
     list_display  = ['nome', 'email', 'telefone', 'categoria_badge', 'subcategoria', 'status_badge', 'analista_responsavel', 'criado_em']
     list_filter   = ['status', 'categoria', 'analista_responsavel']
     search_fields = ['nome', 'email']
+    inlines       = [OperacaoInline]
+
+    fieldsets = [
+        ('Dados do Cliente', {
+            'fields': ['nome', 'email', 'telefone']
+        }),
+        ('Solicitação', {
+            'fields': ['categoria', 'subcategoria', 'mensagem']
+        }),
+        ('Gestão', {
+            'fields': ['status', 'analista_responsavel']
+        }),
+    ]
 
     @admin.display(description='Status')
     def status_badge(self, obj):
         cores = {
-            'novo':           '#0c0a09',
-            'em_atendimento': '#eab308',
-            'fechado':        '#16a34a',
-            'perdido':        '#dc2626',
+            'novo':           'bg-blue-100 text-blue-800',
+            'em_atendimento': 'bg-yellow-100 text-yellow-800',
+            'fechado':        'bg-green-100 text-green-800',
+            'perdido':        'bg-red-100 text-red-800',
         }
         classe = cores.get(obj.status, 'bg-gray-100 text-gray-800')
         return format_html(
@@ -73,12 +110,19 @@ class LeadAdmin(admin.ModelAdmin):
 
 
 # ================================================================
-#  OPERAÇÃO
+#  OPERAÇÃO — tela própria com Financeiro inline
 # ================================================================
 @admin.register(Operacao)
 class OperacaoAdmin(admin.ModelAdmin):
     list_display  = ['lead', 'equipamento', 'data_inicio', 'data_fim', 'turno_badge', 'duracao']
     list_filter   = ['turno', 'equipamento']
+    inlines       = [FinanceiroInline]
+
+    fieldsets = [
+        ('Identificação', {'fields': ['lead', 'equipamento']}),
+        ('Período',       {'fields': ['data_inicio', 'data_fim', 'turno']}),
+        ('Detalhes',      {'fields': ['local_operacao', 'observacoes']}),
+    ]
 
     @admin.display(description='Turno')
     def turno_badge(self, obj):
@@ -155,6 +199,12 @@ class PerfilAnalistaAdmin(admin.ModelAdmin):
     list_display  = ['user', 'cargo_badge', 'telefone', 'metricas', 'ativo_badge']
     list_filter   = ['cargo', 'ativo']
 
+    fieldsets = [
+        ('Usuário',       {'fields': ['user', 'cargo', 'ativo']}),
+        ('Contato',       {'fields': ['telefone', 'linkedin']}),
+        ('Perfil',        {'fields': ['foto', 'bio']}),
+    ]
+
     @admin.display(description='Cargo')
     def cargo_badge(self, obj):
         cores = {
@@ -172,13 +222,17 @@ class PerfilAnalistaAdmin(admin.ModelAdmin):
 
     @admin.display(description='Performance')
     def metricas(self, obj):
-        return format_html(
-            '<span class="text-xs">{} leads · {} fechados · <strong>{}%</strong> conv.</span>',
-            obj.total_leads, obj.leads_fechados, obj.taxa_conversao
+        html = (
+            f'<span class="text-xs">'
+            f'{obj.total_leads} leads &mdash; '
+            f'{obj.leads_fechados} fechados &mdash; '
+            f'{obj.taxa_conversao}% conv.'
+            f'</span>'
         )
+        return mark_safe(html)
 
     @admin.display(description='Ativo')
     def ativo_badge(self, obj):
         if obj.ativo:
-            return format_html('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">✓ Ativo</span>')
-        return format_html('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">✗ Inativo</span>')
+            return mark_safe('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">✓ Ativo</span>')
+        return mark_safe('<span class="px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">✗ Inativo</span>')

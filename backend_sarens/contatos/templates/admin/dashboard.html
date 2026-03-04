@@ -1,0 +1,207 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* VARIÁVEIS DE TEMA */
+    :root {
+        --sarens-gold: #C8A84B;
+        --sarens-gold-dark: #a68a3d;
+        --bg-light: #f4f7fa;
+        --card-light: #ffffff;
+        --text-main: #1e293b;
+    }
+
+    #content { padding: 0 !important; background: var(--bg-light) !important; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .dashboard-wrapper { padding: 30px; }
+
+    /* --- ESTILO 1: CARDS MODO "MATERIAL LUXURY" --- */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 35px; }
+    
+    .card-premium {
+        background: var(--card-light);
+        border-radius: 24px;
+        padding: 24px;
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.198), 0 4px 6px -2px rgba(0,0,0,0.02);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-premium:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(200, 168, 75, 0.15); border-color: var(--sarens-gold); }
+
+    .card-premium::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--sarens-gold); opacity: 0; transition: 0.3s;
+    }
+    .card-premium:hover::before { opacity: 1; }
+
+    .icon-box { width: 45px; height: 45px; border-radius: 12px; background: rgba(200, 168, 75, 0.1); color: var(--sarens-gold); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+    .label-mini { font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+    .value-main { font-size: 30px; font-weight: 800; color: var(--text-main); display: block; margin: 5px 0; }
+
+    /* --- ESTILO 2: MODO INDUSTRIAL DARK (SARENS NIGHT) --- */
+    .dark-section { background: #111827; border-radius: 24px; padding: 30px; border: 1px solid #1f2937; margin-top: 30px; }
+    .dark-card { background: #1f2937; border: 1px solid #374151; border-radius: 16px; padding: 20px; color: white; }
+
+    /* GRID PRINCIPAL */
+    .main-layout { display: grid; grid-template-columns: 1.2fr 2fr; gap: 30px; }
+    .glass-widget { background: white; border-radius: 24px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.198), 0 4px 6px -2px rgba(0,0,0,0.02)}
+
+    /* BOTÃO ESTILO MATERIAL */
+    .btn-lux {
+        background: var(--sarens-gold); color: white !important; padding: 10px 20px; border-radius: 14px; 
+        font-weight: 700; text-decoration: none; font-size: 12px; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-lux:hover { background: var(--text-main); box-shadow: 0 10px 15px -3px rgba(200, 168, 75, 0.4); }
+
+    .tag-status { padding: 4px 12px; border-radius: 8px; font-size: 10px; font-weight: 800; background: #fef3c7; color: #92400e; }
+</style>
+{% endblock %} {% block content %}
+<div class="dashboard-wrapper">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+        <div>
+            <h1 style="font-size: 28px; font-weight: 800; color: #0f172a; margin: 0; letter-spacing: -1px;">
+                Painel <span style="color: var(--sarens-gold)">Operacional</span>
+            </h1>
+            <p style="color: #64748b; font-size: 14px; margin-top: 5px;">Bem-vindo de volta, acompanhe os indicadores da Sarens em tempo real.</p>
+        </div>
+        <div style="background: white; padding: 10px 20px; border-radius: 15px; border: 1px solid #e2e8f0; font-weight: 600; color: #64748b; font-size: 13px;">
+            {% now "d \d\e F, Y" %}
+        </div>
+    </div>
+
+    <div class="kpi-grid">
+        <div class="card-premium">
+            <div class="label-mini">Leads do Mês</div>
+            <span class="value-main">{{ leads_mes }}</span>
+            <div style="font-size: 12px; color: #10b981; font-weight: 700;">+14% vs mensal</div>
+        </div>
+        <div class="card-premium">
+            <div class="label-mini">Receita Estimada</div>
+            <span class="value-main">R$ {{ receita_mes }}</span>
+            <div style="font-size: 11px; color: #94a3b8;">Margem Real: R$ {{ margem_mes }}</div>
+        </div>
+        <div class="card-premium">
+            <div class="label-mini">Taxa de Conversão</div>
+            <span class="value-main">{{ taxa_conversao }}%</span>
+            <div style="font-size: 11px; color: #94a3b8;">Média da indústria: 4.2%</div>
+        </div>
+        <div class="card-premium" style="background: #fffafa; border-color: #fee2e2;">
+            <div class="label-mini" style="color: #ef4444;">Sem Analista</div>
+            <span class="value-main" style="color: #ef4444;">{{ leads_sem_analista }}</span>
+            <div style="font-size: 11px; color: #ef4444; font-weight: 700;">AÇÃO IMEDIATA</div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="glass-widget">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 55px; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                <span style="width: 8px; height: 8px; background: var(--sarens-gold); border-radius: 50%;"></span> Mix de Equipamentos
+            </h3>
+            <div style="height: 280px;">
+                <canvas id="chartMain"></canvas>
+            </div>
+        </div>
+        <div class="glass-widget" style="position: relative; z-index: 10;">
+    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 25px; color: #1e293b;">
+        <span style="color: #C8A84B; margin-right: 8px;">●</span> Saúde Financeira (Mês)
+    </h3>
+    <div style="height: 300px;">
+        <canvas id="chartFinanceiro"></canvas>
+    </div>
+</div>
+
+       <div class="glass-widget">
+    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 25px; color: #1e293b;">Últimas Solicitações</h3>
+    
+    {% for lead in leads_novos %}
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: #f8fafc; border-radius: 18px; margin-bottom: 12px; border: 1px solid #f1f5f9;">
+        
+        <div>
+            <div style="font-weight: 700; color: #1e293b; font-size: 14px; margin-bottom: 4px;">{{ lead.nome }}</div>
+            <span class="tag-status" style="display: inline-block;">{{ lead.get_categoria_display }}</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px; font-weight: 500;">
+                {{ lead.criado_em|date:"d/m" }} às {{ lead.criado_em|date:"H:i" }}
+            </div>
+            <a href="/admin/contatos/lead/{{ lead.id }}/change/" class="btn-lux" style="padding: 8px 20px; text-decoration: none;">Atribuir</a>
+        </div>
+
+    </div>
+    
+    {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+    const ctxFin = document.getElementById('chartFinanceiro').getContext('2d');
+    new Chart(ctxFin, {
+        type: 'bar',
+        data: {
+            labels: ['Mês Atual'],
+            datasets: [
+                {
+                    label: 'Receita',
+                    data: [{{ receita_grafico|safe }}],
+                    backgroundColor: '#16a34a',
+                    borderRadius: 8,
+                    barThickness: 50
+                },
+                {
+                    label: 'Despesa',
+                    data: [{{ despesa_grafico|safe }}],
+                    backgroundColor: '#dc2626',
+                    borderRadius: 8,
+                    barThickness: 50
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + 
+                                context.raw.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { display: false }, ticks: { display: false } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+    const ctx = document.getElementById('chartMain').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for item in leads_por_categoria %}'{{ item.nome }}',{% endfor %}],
+            datasets: [{
+                data: [{% for item in leads_por_categoria %}{{ item.total }},{% endfor %}],
+                backgroundColor: ['#C8A84B', '#1e293b', '#475569', '#94a3b8', '#cbd5e1'],
+                hoverOffset: 20,
+                borderWidth: 0
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            cutout: '80%',
+            plugins: {
+                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 25, font: { size: 11, weight: '600' } } }
+            }
+        }
+    });
+</script>
+{% endblock %}

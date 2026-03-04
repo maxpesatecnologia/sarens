@@ -1,0 +1,169 @@
+/* ============================================================
+   SARENS — Custom Admin Styles
+   Carregado via UNFOLD["STYLES"] no settings.py
+   ============================================================ */
+
+/* ── Variáveis de cor SARENS ─────────────────────────────── */
+:root {
+  --sarens-gold:        #C8A84B;
+  --sarens-gold-light:  #E2C875;
+  --sarens-gold-dark:   #9A7A2E;
+  --sarens-black:       #0D0D0D;
+  --sarens-dark:        #141414;
+  --sarens-dark-2:      #1C1C1C;
+  --sarens-dark-3:      #242424;
+  --sarens-border:      rgba(200, 168, 75, 0.25);
+  --sarens-border-subtle: rgba(255,255,255,0.07);
+}
+
+/* ── Modo escuro: fundo quase preto ─────────────────────── */
+.dark body,
+.dark {
+  background-color: var(--sarens-black) !important;
+}
+
+.dark #main,
+.dark .main-content,
+.dark [class*="content"] {
+  background-color: var(--sarens-dark) !important;
+}
+
+/* Sidebar escura */
+.dark aside,
+.dark nav[class*="sidebar"],
+.dark [class*="sidebar"] {
+  background-color: var(--sarens-black) !important;
+  border-right: 1px solid var(--sarens-border) !important;
+}
+
+/* ── Bordas visíveis em cards e tabelas ──────────────────── */
+
+/* Cards / módulos na home */
+.dark .module,
+.dark [class*="module"],
+.dark .card,
+.dark [class*="card"] {
+  border: 1px solid var(--sarens-border) !important;
+  border-radius: 6px !important;
+}
+
+/* Linhas da tabela */
+.dark table tbody tr {
+  border-bottom: 1px solid var(--sarens-border-subtle) !important;
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(200, 168, 75, 0.05) !important;
+}
+
+/* Cabeçalho da tabela */
+.dark table thead th,
+.dark table thead tr {
+  border-bottom: 2px solid var(--sarens-border) !important;
+  color: var(--sarens-gold-light) !important;
+}
+
+/* ── Modo claro: branco com dourado vibrante ─────────────── */
+
+/* Cards / módulos */
+.module,
+[class*="module"],
+.card,
+[class*="card"] {
+  border: 1px solid rgba(200, 168, 75, 0.3) !important;
+  border-radius: 6px !important;
+}
+
+/* Linhas da tabela */
+table tbody tr {
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+}
+
+table tbody tr:hover {
+  background-color: rgba(200, 168, 75, 0.04) !important;
+}
+
+table thead th {
+  border-bottom: 2px solid var(--sarens-gold) !important;
+  color: var(--sarens-gold-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Sidebar clara com borda dourada */
+aside,
+nav[class*="sidebar"],
+[class*="sidebar"] {
+  border-right: 1px solid rgba(200, 168, 75, 0.2) !important;
+}
+
+/* ── Divisórias entre seções do sidebar ─────────────────── */
+.dark [class*="navigation"] hr,
+.dark [class*="separator"] {
+  border-color: var(--sarens-border) !important;
+  opacity: 1 !important;
+}
+
+[class*="navigation"] hr,
+[class*="separator"] {
+  border-color: rgba(200, 168, 75, 0.25) !important;
+  opacity: 1 !important;
+}
+
+/* ── Botões primários em dourado ─────────────────────────── */
+[class*="btn-primary"],
+input[type="submit"],
+.submit-row input[type="submit"] {
+  background-color: var(--sarens-gold) !important;
+  border-color: var(--sarens-gold-dark) !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+[class*="btn-primary"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--sarens-gold-light) !important;
+}
+
+/* ── Links ativos no sidebar ─────────────────────────────── */
+.dark [class*="active"],
+.dark [aria-current="page"] {
+  background-color: rgba(200, 168, 75, 0.12) !important;
+  border-left: 3px solid var(--sarens-gold) !important;
+  color: var(--sarens-gold-light) !important;
+}
+
+[class*="active"],
+[aria-current="page"] {
+  border-left: 3px solid var(--sarens-gold) !important;
+  color: var(--sarens-gold-dark) !important;
+}
+
+/* ── Inputs e selects com borda dourada no foco ──────────── */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: var(--sarens-gold) !important;
+  box-shadow: 0 0 0 2px rgba(200, 168, 75, 0.2) !important;
+}
+
+/* ── Títulos de seção (Comercial / Frota / Equipe) ───────── */
+.dark [class*="section-title"],
+.dark [class*="nav-title"],
+.dark [class*="group-title"] {
+  color: var(--sarens-gold) !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+[class*="section-title"],
+[class*="nav-title"],
+[class*="group-title"] {
+  color: var(--sarens-gold-dark) !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
