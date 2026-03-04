@@ -31,6 +31,22 @@ def dashboard(request):
         total_despesa=Sum('despesa'),
     )
 
+    # Se nao ha dados no mes atual, busca o mes mais recente com dados
+    if not fin_mes['total_receita']:
+        ultimo = Financeiro.objects.select_related('operacao').order_by(
+            '-operacao__data_inicio'
+        ).first()
+        if ultimo:
+            mes_ref = ultimo.operacao.data_inicio.month
+            ano_ref = ultimo.operacao.data_inicio.year
+            fin_mes = Financeiro.objects.filter(
+                operacao__data_inicio__month=mes_ref,
+                operacao__data_inicio__year=ano_ref
+            ).aggregate(
+                total_receita=Sum('receita'),
+                total_despesa=Sum('despesa'),
+            )
+
     def fmt(val):
         if val is None:
             return '0,00'
@@ -101,11 +117,6 @@ def dashboard(request):
         'despesa_grafico':      float(d),
     }
     context.update(admin.site.each_context(request))
-    return render(request, 'admin/dashboard.html', context)
-
-    # Esta linha injeta o menu lateral e as permissões do sistema Admin
-    context.update(admin.site.each_context(request))
-
     return render(request, 'admin/dashboard.html', context)
 
 
