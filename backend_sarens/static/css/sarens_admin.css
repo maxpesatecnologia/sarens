@@ -1,93 +1,195 @@
 /* ============================================================
-   SARENS — Admin CSS v3
-   Preto/Dourado com suavidade e leveza
+   SARENS — Admin CSS v5 — Clean Light
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --gold:        #C8A84B;
   --gold-light:  #E2C875;
-  --gold-subtle: rgba(200, 168, 75, 0.12);
-  --gold-border: rgba(200, 168, 75, 0.2);
-  --dark-bg:     #0f0f0f;
-  --dark-surface:#171717;
-  --dark-card:   #1e1e1e;
-  --dark-border: rgba(255,255,255,0.06);
+  --gold-dark:   #9A7A2E;
+  --gold-bg:     rgba(200,168,75,0.08);
+  --gold-border: rgba(200,168,75,0.3);
+  --white:       #FFFFFF;
+  --text:        #1A1A1A;
+  --muted:       #6B6B6B;
 }
 
 /* ── Fonte ───────────────────────────────────────────────── */
-body, input, select, textarea, button {
+body, input, select, textarea, button, td, th {
   font-family: 'Barlow', system-ui, sans-serif !important;
-  font-size: 0.875rem !important;
-  letter-spacing: 0.01em !important;
 }
 
-/* ── Fundo geral dark ────────────────────────────────────── */
-.dark body { background-color: var(--dark-bg) !important; }
-.dark #main,
-.dark [id="main"] { background-color: var(--dark-bg) !important; }
-
-/* ── Sidebar ─────────────────────────────────────────────── */
-aside {
-  border-right: 1px solid rgba(200,168,75,0.15) !important;
-}
-.dark aside {
-  background-color: var(--dark-surface) !important;
-  border-right: 1px solid rgba(200,168,75,0.15) !important;
-}
-
-/* Item ativo — cor de fundo suave dourada */
-[aria-current="page"] {
-  background-color: rgba(200,168,75,0.1) !important;
-  border-radius: 6px !important;
-  border-left: 3px solid var(--gold) !important;
-  font-weight: 600 !important;
-}
-.dark [aria-current="page"] {
-  background-color: rgba(200,168,75,0.1) !important;
-  border-left: 3px solid var(--gold) !important;
-}
-
-/* Títulos de grupo */
-aside [class*="text-xs"][class*="uppercase"],
-aside [class*="font-medium"][class*="uppercase"] {
-  color: var(--gold) !important;
-  font-size: 0.6rem !important;
-  letter-spacing: 0.15em !important;
-  font-weight: 700 !important;
-  opacity: 0.8 !important;
-}
-
-/* ── Tabela ──────────────────────────────────────────────── */
+/* ── Tabela — cabeçalho grande, conteúdo menor ───────────── */
 table thead th {
-  padding: 12px 16px !important;
-  font-size: 0.68rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.1em !important;
+  padding: 14px 16px !important;
+  font-size: 0.82rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  color: #9a7a2e !important;
-  border-bottom: 1px solid rgba(200,168,75,0.25) !important;
-  background: transparent !important;
-}
-.dark table thead th {
-  color: rgba(200,168,75,0.7) !important;
-  border-bottom-color: rgba(200,168,75,0.15) !important;
+  color: #1a1200 !important;
+  background-color: #e8c84a !important;
+  border-bottom: 2px solid rgba(200,168,75,0.4) !important;
+  border-top: none !important;
+  white-space: nowrap !important;
 }
 
 table tbody td {
-  padding: 13px 16px !important;
-  font-size: 0.875rem !important;
+  padding: 12px 16px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
   line-height: 1.5 !important;
-  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
-}
-.dark table tbody td {
-  border-bottom: 1px solid var(--dark-border) !important;
+  white-space: nowrap !important;
+  border-bottom: 1px solid rgba(200,168,75,0.1) !important;
+  color: var(--text) !important;
 }
 
-table tbody tr:hover td {
-  background-color: rgba(200,168,75,0.04) !important;
+table tbody td:first-of-type { font-weight: 700 !important; }
+
+table tbody tr:nth-child(even) td { background-color: #FDFCF9 !important; }
+table tbody tr { cursor: pointer !important; transition: background 0.15s !important; }
+table tbody tr:hover td { background-color: #FBF7EE !important; }
+
+/* Scrollbar — força em todos os containers possíveis */
+.results,
+[class*="results"],
+[class*="changelist"],
+div:has(> table),
+#changelist,
+#changelist-form,
+.changelist-form-container {
+  overflow-x: auto !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--gold) #f0ede4 !important;
 }
-.dark table tbody tr:hover td {
-  background-color: rgba(200,168,75,0.05) !important;
+
+/* Remove overflow hidden que o Unfold coloca */
+#changelist,
+#changelist-form,
+[class*="changelist"],
+.main > div,
+#main > div {
+  overflow: visible !important;
+  overflow-x: auto !important;
+}
+
+div:has(> table)::-webkit-scrollbar { height: 6px !important; width: 6px !important; }
+div:has(> table)::-webkit-scrollbar-track { background: #f0ede4 !important; border-radius: 3px !important; }
+div:has(> table)::-webkit-scrollbar-thumb { background: var(--gold) !important; border-radius: 3px !important; }
+
+/* ── Inputs — borda dourada sempre visível ───────────────── */
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="number"], input[type="date"], input[type="url"],
+input[type="password"], textarea, select {
+  border: 1.5px solid rgba(200,168,75,0.5) !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  background-color: var(--white) !important;
+  color: var(--text) !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(200,168,75,0.15) !important;
+}
+
+/* ── Labels ──────────────────────────────────────────────── */
+label, .field-label, th.field-label {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  color: var(--muted) !important;
+}
+
+/* ── Fieldsets ───────────────────────────────────────────── */
+fieldset {
+  border: 1px solid var(--gold-border) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  background: var(--white) !important;
+}
+fieldset h2, fieldset legend {
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: var(--gold-dark) !important;
+  padding: 0 0.5rem !important;
+}
+
+/* ── Inline groups ───────────────────────────────────────── */
+.inline-group {
+  border: 1px solid var(--gold-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin-top: 1.5rem !important;
+}
+.inline-group h2 {
+  background: #FBF7EE !important;
+  border-bottom: 1px solid var(--gold-border) !important;
+  padding: 0.75rem 1.25rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: var(--gold-dark) !important;
+}
+
+/* ── Formulário 2 colunas ────────────────────────────────── */
+.form-row, fieldset .form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem 1.5rem !important;
+}
+
+/* ── Botões ──────────────────────────────────────────────── */
+input[type="submit"], .submit-row input[type="submit"] {
+  background-color: var(--gold) !important;
+  border: none !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  padding: 10px 20px !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+}
+input[type="submit"]:hover { background-color: var(--gold-light) !important; }
+
+/* ── Sidebar e Topbar — texto e ícones dourados ─────────── */
+aside a, aside span, aside p, aside button {
+  color: var(--gold) !important;
+}
+aside svg {
+  color: var(--gold) !important;
+  stroke: var(--gold) !important;
+}
+
+/* Títulos de grupo — dourado mais apagado */
+aside [class*="uppercase"] {
+  color: rgba(200,168,75,0.6) !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 800 !important;
+}
+
+/* Item ativo — fundo dourado suave, texto dourado forte */
+[aria-current="page"] {
+  background-color: rgba(200,168,75,0.15) !important;
+  border-left: 3px solid var(--gold) !important;
+  border-radius: 0 6px 6px 0 !important;
+  font-weight: 700 !important;
+}
+[aria-current="page"] span,
+[aria-current="page"] a {
+  color: var(--gold-light) !important;
+}
+[aria-current="page"] svg {
+  color: var(--gold-light) !important;
+  stroke: var(--gold-light) !important;
 }
 
 /* ── Badges ──────────────────────────────────────────────── */
@@ -107,110 +209,34 @@ table tbody tr:hover td {
 .text-indigo-800{ color: #3730a3 !important; }
 .bg-gray-100    { background-color: #f3f4f6 !important; }
 .text-gray-800  { color: #1f2937 !important; }
+.text-green-700 { color: #15803d !important; }
+.text-red-600   { color: #dc2626 !important; }
+.text-gray-500  { color: #6b7280 !important; }
 
-/* Dark badges — translúcido com borda */
-.dark .bg-blue-100    { background-color: rgba(59,130,246,0.12) !important; border: 1px solid rgba(59,130,246,0.3) !important; }
-.dark .text-blue-800  { color: #93c5fd !important; }
-.dark .bg-purple-100  { background-color: rgba(139,92,246,0.12) !important; border: 1px solid rgba(139,92,246,0.3) !important; }
-.dark .text-purple-800{ color: #c4b5fd !important; }
-.dark .bg-orange-100  { background-color: rgba(249,115,22,0.12) !important; border: 1px solid rgba(249,115,22,0.3) !important; }
-.dark .text-orange-800{ color: #fdba74 !important; }
-.dark .bg-yellow-100  { background-color: rgba(234,179,8,0.12) !important; border: 1px solid rgba(234,179,8,0.3) !important; }
-.dark .text-yellow-800{ color: #fde047 !important; }
-.dark .bg-green-100   { background-color: rgba(34,197,94,0.12) !important; border: 1px solid rgba(34,197,94,0.3) !important; }
-.dark .text-green-800 { color: #86efac !important; }
-.dark .bg-red-100     { background-color: rgba(239,68,68,0.12) !important; border: 1px solid rgba(239,68,68,0.3) !important; }
-.dark .text-red-800   { color: #fca5a5 !important; }
-.dark .bg-indigo-100  { background-color: rgba(99,102,241,0.12) !important; border: 1px solid rgba(99,102,241,0.3) !important; }
-.dark .text-indigo-800{ color: #a5b4fc !important; }
-.dark .bg-gray-100    { background-color: rgba(107,114,128,0.12) !important; border: 1px solid rgba(107,114,128,0.3) !important; }
-.dark .text-gray-800  { color: #d1d5db !important; }
+.px-2 { padding-left:.5rem !important; padding-right:.5rem !important; }
+.py-1 { padding-top:.3rem !important; padding-bottom:.3rem !important; }
+.rounded-full { border-radius: 9999px !important; }
+.text-xs { font-size: 0.72rem !important; }
+.font-semibold { font-weight: 600 !important; }
 
-/* Badge base — sem quebra de linha */
-.px-2        { padding-left: .5rem !important; padding-right: .5rem !important; }
-.py-1        { padding-top: .25rem !important; padding-bottom: .25rem !important; }
-.rounded-full{ border-radius: 9999px !important; }
-.text-xs     { font-size: 0.72rem !important; }
-.font-semibold{ font-weight: 600 !important; }
-.font-bold   { font-weight: 700 !important; }
-.text-green-700{ color: #15803d !important; }
-.text-red-600  { color: #dc2626 !important; }
-.text-gray-500 { color: #6b7280 !important; }
-
-/* Impede quebra de linha nos badges */
-td span.rounded-full,
-td span[class*="rounded-full"],
-span.px-2.py-1,
-span[class*="px-2"][class*="rounded-full"] {
+td span[class*="rounded-full"], span.px-2.py-1 {
   white-space: nowrap !important;
   display: inline-block !important;
   line-height: 1.4 !important;
 }
 
-/* ── Cards ───────────────────────────────────────────────── */
-.dark .module, .dark [class*="module"],
-.dark .card,   .dark [class*="card"] {
-  background-color: var(--dark-card) !important;
-  border: 1px solid var(--dark-border) !important;
-  border-radius: 8px !important;
-}
-.module, [class*="module"], .card, [class*="card"] {
-  border: 1px solid rgba(200,168,75,0.15) !important;
-  border-radius: 8px !important;
-}
-
-/* ── Inputs ──────────────────────────────────────────────── */
-input:focus, select:focus, textarea:focus {
-  outline: none !important;
-  border-color: var(--gold) !important;
-  box-shadow: 0 0 0 3px rgba(200,168,75,0.15) !important;
-}
-
-/* ── Botões ──────────────────────────────────────────────── */
-[class*="btn-primary"], input[type="submit"],
-.submit-row input[type="submit"] {
-  background-color: var(--gold) !important;
-  border-color: #9a7a2e !important;
-  color: #000 !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.03em !important;
-}
-[class*="btn-primary"]:hover, input[type="submit"]:hover {
-  background-color: var(--gold-light) !important;
-}
-
 /* ── Menu usuário ────────────────────────────────────────── */
 nav[x-show="openUserLinks"] {
-  background-color: #ffffff !important;
-  border: 1px solid rgba(200,168,75,0.25) !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--gold-border) !important;
   border-radius: 10px !important;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1) !important;
-  backdrop-filter: none !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
   overflow: hidden !important;
-}
-.dark nav[x-show="openUserLinks"] {
-  background-color: #1c1c1c !important;
-  border-color: rgba(200,168,75,0.25) !important;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6) !important;
 }
 nav[x-show="openUserLinks"] a,
 nav[x-show="openUserLinks"] button,
-nav[x-show="openUserLinks"] span { color: #374151 !important; font-size: 0.85rem !important; }
-.dark nav[x-show="openUserLinks"] a,
-.dark nav[x-show="openUserLinks"] button,
-.dark nav[x-show="openUserLinks"] span { color: #e5e5e5 !important; }
+nav[x-show="openUserLinks"] span { color: var(--text) !important; font-size: 0.85rem !important; }
 nav[x-show="openUserLinks"] button:hover,
-nav[x-show="openUserLinks"] a:hover { background-color: var(--gold-subtle) !important; }
+nav[x-show="openUserLinks"] a:hover { background-color: var(--gold-bg) !important; }
 nav[x-show="openUserLinks"] a[href*="logout"],
 nav[x-show="openUserLinks"] a[href*="logout"] span { color: #dc2626 !important; font-weight: 600 !important; }
-nav[x-show="openUserLinks"] button[class*="bg-"] {
-  background-color: var(--gold-subtle) !important;
-  color: var(--gold) !important;
-  border-radius: 6px !important;
-}
-
-/* Coluna de status — largura mínima para não quebrar */
-table td:has(span.rounded-full) {
-  white-space: nowrap !important;
-  min-width: 100px !important;
-}

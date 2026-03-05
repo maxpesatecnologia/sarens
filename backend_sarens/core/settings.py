@@ -71,7 +71,7 @@ USE_I18N      = True
 USE_TZ        = True
 
 STATIC_URL  = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']   # ← pasta para o CSS customizado
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 EMAIL_BACKEND       = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST          = 'smtp.gmail.com'
@@ -91,39 +91,41 @@ UNFOLD = {
     "SITE_HEADER": "SARENS — Painel Operacional",
     "SITE_URL":    "/",
     "SITE_SYMBOL": "settings",
+    "THEME": "light",
 
-    # Carrega o CSS customizado
     "STYLES": [
         lambda request: static("css/sarens_admin.css"),
     ],
 
-    # Dourado SARENS calibrado (#C8A84B)
     "COLORS": {
+        # Primário = dourado SARENS — botões, links, destaques
         "primary": {
-            "50":  "253 250 240",
-            "100": "250 243 220",
-            "200": "244 229 175",
-            "300": "236 210 120",
-            "400": "224 188 80",
-            "500": "200 168 75",   # #C8A84B dourado principal
+            "50":  "253 248 225",
+            "100": "250 240 190",
+            "200": "245 225 145",
+            "300": "235 205 95",
+            "400": "220 183 65",
+            "500": "200 168 75",
             "600": "168 138 52",
             "700": "130 104 35",
             "800": "90  70  20",
             "900": "55  42  10",
             "950": "30  22   4",
         },
+        # Base = escala de cinza quente — sidebar, texto, fundos
+        # No light mode: 50=fundo sidebar, 100=hover, 900=texto
         "base": {
-            "50":  "250 250 249",
-            "100": "245 244 242",
-            "200": "228 227 224",
-            "300": "196 194 190",
-            "400": "152 149 144",
-            "500": "105 102 97",
-            "600": "72  69  65",
-            "700": "48  46  43",
-            "800": "30  28  26",
-            "900": "18  17  15",
-            "950": "10   9   8",
+            "50":  "250 248 244",
+            "100": "243 240 233",
+            "200": "225 220 210",
+            "300": "190 184 172",
+            "400": "148 142 130",
+            "500": "105 100 88",
+            "600": "70  66  56",
+            "700": "48  45  37",
+            "800": "30  28  22",
+            "900": "18  17  13",
+            "950": "10   9   6",
         },
     },
 

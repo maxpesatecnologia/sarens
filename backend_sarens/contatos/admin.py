@@ -69,15 +69,24 @@ class LeadAdmin(admin.ModelAdmin):
 
     fieldsets = [
         ('Dados do Cliente', {
-            'fields': ['nome', 'email', 'telefone']
+            'fields': [
+                ('nome', 'telefone'),
+                ('email', 'analista_responsavel'),
+            ]
         }),
         ('Solicitação', {
-            'fields': ['categoria', 'subcategoria', 'mensagem']
+            'fields': [
+                ('categoria', 'subcategoria'),
+                'mensagem',
+            ]
         }),
         ('Gestão', {
-            'fields': ['status', 'analista_responsavel']
+            'fields': [
+                ('status', 'criado_em'),
+            ]
         }),
     ]
+    readonly_fields = ['criado_em']
 
     @admin.display(description='Status')
     def status_badge(self, obj):
@@ -87,10 +96,20 @@ class LeadAdmin(admin.ModelAdmin):
             'fechado':        'bg-green-100 text-green-800',
             'perdido':        'bg-red-100 text-red-800',
         }
+        labels = {
+            'novo':           'Novo',
+            'em_atendimento': 'Em atend.',
+            'fechado':        'Fechado',
+            'perdido':        'Perdido',
+        }
         classe = cores.get(obj.status, 'bg-gray-100 text-gray-800')
+        label  = labels.get(obj.status, obj.get_status_display())
         return format_html(
-            '<span class="px-2 py-1 rounded-full text-xs font-semibold {}">{}</span>',
-            classe, obj.get_status_display()
+            '<span class="px-2 py-1 rounded-full text-xs font-semibold" style="white-space:nowrap;background-color:inherit">{}</span>',
+            label
+        ) if False else format_html(
+            '<span class="px-2 py-1 rounded-full text-xs font-semibold {}" style="white-space:nowrap">{}</span>',
+            classe, label
         )
 
     @admin.display(description='Categoria')

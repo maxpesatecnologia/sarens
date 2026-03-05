@@ -5,7 +5,6 @@
 {{ block.super }}
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-    /* VARIÁVEIS DE TEMA */
     :root {
         --sarens-gold: #C8A84B;
         --sarens-gold-dark: #a68a3d;
@@ -17,51 +16,114 @@
     #content { padding: 0 !important; background: var(--bg-light) !important; font-family: 'Plus Jakarta Sans', sans-serif; }
     .dashboard-wrapper { padding: 30px; }
 
-    /* --- ESTILO 1: CARDS MODO "MATERIAL LUXURY" --- */
+    /* ── KPI Cards — borda dourada sempre ativa, sobe no hover ── */
     .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 35px; }
-    
+
     .card-premium {
         background: var(--card-light);
-        border-radius: 24px;
+        border-radius: 20px;
         padding: 24px;
-        border: 1px solid rgba(226, 232, 240, 0.8);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.198), 0 4px 6px -2px rgba(0,0,0,0.02);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #e2e8f0;
+        border-top: 3px solid var(--sarens-gold);
+        box-shadow: 0 4px 12px rgba(200,168,75,0.08);
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
     }
 
-    .card-premium:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(200, 168, 75, 0.15); border-color: var(--sarens-gold); }
-
-    .card-premium::before {
-        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--sarens-gold); opacity: 0; transition: 0.3s;
+    .card-premium:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(200,168,75,0.2);
+        border-top-width: 5px;
     }
-    .card-premium:hover::before { opacity: 1; }
 
-    .icon-box { width: 45px; height: 45px; border-radius: 12px; background: rgba(200, 168, 75, 0.1); color: var(--sarens-gold); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
     .label-mini { font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
     .value-main { font-size: 30px; font-weight: 800; color: var(--text-main); display: block; margin: 5px 0; }
 
-    /* --- ESTILO 2: MODO INDUSTRIAL DARK (SARENS NIGHT) --- */
-    .dark-section { background: #111827; border-radius: 24px; padding: 30px; border: 1px solid #1f2937; margin-top: 30px; }
-    .dark-card { background: #1f2937; border: 1px solid #374151; border-radius: 16px; padding: 20px; color: white; }
-
-    /* GRID PRINCIPAL */
     .main-layout { display: grid; grid-template-columns: 1.2fr 2fr; gap: 30px; }
-    .glass-widget { background: white; border-radius: 24px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.198), 0 4px 6px -2px rgba(0,0,0,0.02)}
 
-    /* BOTÃO ESTILO MATERIAL */
+    .glass-widget {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        position: relative;
+        overflow: hidden;
+    }
+
     .btn-lux {
-        background: var(--sarens-gold); color: white !important; padding: 10px 20px; border-radius: 14px; 
+        background: var(--sarens-gold); color: white !important; padding: 10px 20px; border-radius: 14px;
         font-weight: 700; text-decoration: none; font-size: 12px; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
     }
-    .btn-lux:hover { background: var(--text-main); box-shadow: 0 10px 15px -3px rgba(200, 168, 75, 0.4); }
+    .btn-lux:hover { background: var(--text-main); box-shadow: 0 10px 15px -3px rgba(200,168,75,0.4); }
 
     .tag-status { padding: 4px 12px; border-radius: 8px; font-size: 10px; font-weight: 800; background: #fef3c7; color: #92400e; }
-</style>
-{% endblock %} {% block content %}
-<div class="dashboard-wrapper">
+
     
+
+</style>
+<script>
+function imprimirRelatorio() {
+    const receita = document.querySelector('.value-main:nth-of-type(2)');
+    const data = document.querySelector('.print-header p');
+    
+    // Captura os canvas dos gráficos como imagem
+    const chartMain = document.getElementById('chartMain');
+    const chartFin  = document.getElementById('chartFinanceiro');
+    const imgMain = chartMain ? chartMain.toDataURL('image/png') : '';
+    const imgFin  = chartFin  ? chartFin.toDataURL('image/png')  : '';
+
+    // Captura os 4 KPI cards
+    const kpiGrid = document.querySelector('.kpi-grid');
+    const kpiHtml = kpiGrid ? kpiGrid.outerHTML : '';
+
+    const w = window.open('', '_blank');
+    w.document.write(`
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>SARENS — Relatório Operacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: white; padding: 30px; color: #1e293b; }
+  h2 { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 4px; }
+  .sub { text-align: center; color: #64748b; font-size: 12px; margin-bottom: 30px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 30px; }
+  .card-premium { border: 1px solid #e2e8f0; border-top: 3px solid #C8A84B; border-radius: 12px; padding: 16px; }
+  .label-mini { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+  .value-main { font-size: 24px; font-weight: 800; color: #1e293b; display: block; margin: 6px 0; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
+  .chart-box { border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+  .chart-box h3 { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
+  img { width: 100%; height: 320px; object-fit: contain; }
+  @media print { button { display: none; } }
+</style>
+</head><body>
+<h2>SARENS — Relatório Operacional</h2>
+<p class="sub">${new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'})}</p>
+${kpiHtml}
+<div class="charts">
+  <div class="chart-box"><h3>Mix de Equipamentos</h3><img src="${imgMain}"></div>
+  <div class="chart-box"><h3>Saúde Financeira</h3><img src="${imgFin}"></div>
+</div>
+<br>
+<button onclick="window.print()" style="background:#C8A84B;border:none;padding:10px 24px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">Imprimir / Salvar PDF</button>
+</body></html>`);
+    w.document.close();
+    setTimeout(() => w.print(), 800);
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+
+    <!-- Cabeçalho apenas para impressão -->
+    <div class="print-header">
+        <h2>SARENS — Relatório Operacional</h2>
+        <p>{% now "d \d\e F \d\e Y" %}</p>
+    </div>
+
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
         <div>
             <h1 style="font-size: 28px; font-weight: 800; color: #0f172a; margin: 0; letter-spacing: -1px;">
@@ -69,8 +131,18 @@
             </h1>
             <p style="color: #64748b; font-size: 14px; margin-top: 5px;">Bem-vindo de volta, acompanhe os indicadores da Sarens em tempo real.</p>
         </div>
-        <div style="background: white; padding: 10px 20px; border-radius: 15px; border: 1px solid #e2e8f0; font-weight: 600; color: #64748b; font-size: 13px;">
-            {% now "d \d\e F, Y" %}
+        <div style="display:flex; gap:12px; align-items:center;">
+            <button onclick="imprimirRelatorio()" style="
+                background: var(--sarens-gold); color: #000; border: none;
+                padding: 10px 20px; border-radius: 12px; font-weight: 700;
+                font-size: 13px; cursor: pointer; display:flex; align-items:center; gap:8px;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+            ">
+                <span style="font-size:16px;">🖨</span> Imprimir Relatório
+            </button>
+            <div style="background: white; padding: 10px 20px; border-radius: 15px; border: 1px solid #e2e8f0; font-weight: 600; color: #64748b; font-size: 13px;">
+                {% now "d \d\e F, Y" %}
+            </div>
         </div>
     </div>
 
@@ -90,10 +162,10 @@
             <span class="value-main">{{ taxa_conversao }}%</span>
             <div style="font-size: 11px; color: #94a3b8;">Média da indústria: 4.2%</div>
         </div>
-        <div class="card-premium" style="background: #fffafa; border-color: #fee2e2;">
-            <div class="label-mini" style="color: #ef4444;">Sem Analista</div>
-            <span class="value-main" style="color: #ef4444;">{{ leads_sem_analista }}</span>
-            <div style="font-size: 11px; color: #ef4444; font-weight: 700;">AÇÃO IMEDIATA</div>
+        <div class="card-premium" style="border-color: #e2e8f0; border-top-color: #dc2626;">
+            <div class="label-mini" style="color: #dc2626;">Sem Analista</div>
+            <span class="value-main" style="color: #dc2626;">{{ leads_sem_analista }}</span>
+            <div style="font-size: 11px; color: #dc2626; font-weight: 700;">AÇÃO IMEDIATA</div>
         </div>
     </div>
 
@@ -106,12 +178,11 @@
                 <canvas id="chartMain"></canvas>
             </div>
         </div>
+
         <div class="glass-widget" style="position:relative; z-index:10; display:flex; flex-direction:column; gap:0;">
             <h3 style="font-size:16px; font-weight:700; color:#1e293b; margin-bottom:16px;">
                 <span style="color:#C8A84B; margin-right:8px;">●</span> Saúde Financeira (Mês)
             </h3>
-
-            <!-- KPI cards em linha -->
             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:20px;">
                 <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7); border-radius:14px; padding:14px 16px; border:1px solid #bbf7d0;">
                     <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
@@ -136,77 +207,60 @@
                     <div id="kpi-pct" style="font-size:11px; font-weight:600; color:#b45309; margin-top:2px;">— % da receita</div>
                 </div>
             </div>
-
-            <!-- Gráfico horizontal com bastante espaço -->
             <div style="height:170px; position:relative;">
                 <canvas id="chartFinanceiro"></canvas>
             </div>
         </div>
 
-       <div class="glass-widget">
-    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 25px; color: #1e293b;">Últimas Solicitações</h3>
-    
-    {% for lead in leads_novos %}
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: #f8fafc; border-radius: 18px; margin-bottom: 12px; border: 1px solid #f1f5f9;">
-        
-        <div>
-            <div style="font-weight: 700; color: #1e293b; font-size: 14px; margin-bottom: 4px;">{{ lead.nome }}</div>
-            <span class="tag-status" style="display: inline-block;">{{ lead.get_categoria_display }}</span>
-        </div>
-
-        <div style="display: flex; flex-direction: column; align-items: flex-end;">
-            <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px; font-weight: 500;">
-                {{ lead.criado_em|date:"d/m" }} às {{ lead.criado_em|date:"H:i" }}
+        <div class="glass-widget">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 25px; color: #1e293b;">Últimas Solicitações</h3>
+            {% for lead in leads_novos %}
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background: #f8fafc; border-radius: 18px; margin-bottom: 12px; border: 1px solid #f1f5f9;">
+                <div>
+                    <div style="font-weight: 700; color: #1e293b; font-size: 14px; margin-bottom: 4px;">{{ lead.nome }}</div>
+                    <span class="tag-status" style="display: inline-block;">{{ lead.get_categoria_display }}</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                    <div style="font-size: 11px; color: #94a3b8; margin-bottom: 6px; font-weight: 500;">
+                        {{ lead.criado_em|date:"d/m" }} às {{ lead.criado_em|date:"H:i" }}
+                    </div>
+                    <a href="/admin/contatos/lead/{{ lead.id }}/change/" class="btn-lux" style="padding: 8px 20px; text-decoration: none;">Atribuir</a>
+                </div>
             </div>
-            <a href="/admin/contatos/lead/{{ lead.id }}/change/" class="btn-lux" style="padding: 8px 20px; text-decoration: none;">Atribuir</a>
+            {% endfor %}
         </div>
-
     </div>
-    
-    {% endfor %}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
-    // ── Gráfico Financeiro ──────────────────────────────────────────
     const receita = {{ receita_grafico|safe }};
     const despesa = {{ despesa_grafico|safe }};
     const margem  = receita - despesa;
     const pct     = receita > 0 ? ((margem / receita) * 100).toFixed(1) : 0;
+    const fmt  = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const fmtK = v => v >= 1000 ? 'R$ ' + (v/1000).toFixed(0) + 'k' : fmt(v);
 
-    const fmt = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const fmtK = v => {
-        if (v >= 1000) return 'R$ ' + (v / 1000).toFixed(0) + 'k';
-        return fmt(v);
-    };
-
-    // KPI cards
     const kpiDesp = document.getElementById('kpi-despesa');
     if (kpiDesp) kpiDesp.textContent = fmt(despesa);
     const kpiPct = document.getElementById('kpi-pct');
     if (kpiPct) kpiPct.textContent = pct + '% da receita';
 
-    // Plugin: label acima de cada barra (valor completo + %)
     const labelPlugin = {
         id: 'barLabels',
         afterDatasetsDraw(chart) {
-            const { ctx, chartArea: { top } } = chart;
+            const { ctx } = chart;
             chart.data.datasets.forEach((ds, i) => {
                 chart.getDatasetMeta(i).data.forEach((bar, j) => {
                     const val = ds.data[j];
                     if (val === null || val === undefined) return;
                     const extras = ['', '', ' (' + pct + '%)'];
-                    const labels = [fmt(val), fmt(val), fmt(val)];
-                    const yLabel = bar.y - 8;
-
-                    // Valor acima da barra
                     ctx.save();
                     ctx.font = 'bold 11px Plus Jakarta Sans, sans-serif';
                     ctx.fillStyle = '#1e293b';
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'bottom';
-                    ctx.fillText(labels[j] + extras[j], bar.x, yLabel);
+                    ctx.fillText(fmt(val) + extras[j], bar.x, bar.y - 8);
                     ctx.restore();
                 });
             });
@@ -221,80 +275,47 @@
             data: {
                 labels: ['Receita', 'Despesa', 'Margem'],
                 datasets: [{
-                    label: 'Valor',
                     data: [receita, despesa, margem],
-                    backgroundColor: [
-                        'rgba(22,163,74,0.85)',
-                        'rgba(220,38,38,0.85)',
-                        'rgba(200,168,75,0.85)'
-                    ],
-                    borderColor: ['#16a34a', '#dc2626', '#C8A84B'],
-                    borderWidth: 2,
-                    borderRadius: 10,
-                    borderSkipped: false,
-                    barPercentage: 0.55,
+                    backgroundColor: ['rgba(22,163,74,0.85)','rgba(220,38,38,0.85)','rgba(200,168,75,0.85)'],
+                    borderColor: ['#16a34a','#dc2626','#C8A84B'],
+                    borderWidth: 2, borderRadius: 10, borderSkipped: false, barPercentage: 0.55,
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
+                responsive: true, maintainAspectRatio: false,
                 layout: { padding: { top: 28 } },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: '#1e293b',
-                        titleColor: '#94a3b8',
-                        bodyColor: '#f1f5f9',
-                        padding: 12,
-                        cornerRadius: 10,
-                        callbacks: {
-                            label: c => {
-                                const subtitles = ['total faturado', 'custo operacional', pct + '% de margem'];
-                                return ' ' + fmt(c.raw) + '  —  ' + subtitles[c.dataIndex];
-                            }
-                        }
+                        backgroundColor: '#1e293b', titleColor: '#94a3b8', bodyColor: '#f1f5f9',
+                        padding: 12, cornerRadius: 10,
+                        callbacks: { label: c => {
+                            const s = ['total faturado','custo operacional', pct+'% de margem'];
+                            return ' ' + fmt(c.raw) + '  —  ' + s[c.dataIndex];
+                        }}
                     }
                 },
                 scales: {
-                    y: {
-                        display: true,
-                        beginAtZero: true,
-                        grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
-                        ticks: {
-                            callback: fmtK,
-                            font: { size: 10 },
-                            color: '#94a3b8',
-                            maxTicksLimit: 4
-                        },
-                        border: { display: false }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { font: { weight: '700', size: 12 }, color: '#475569' },
-                        border: { display: false }
-                    }
+                    y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: fmtK, font: { size: 10 }, color: '#94a3b8', maxTicksLimit: 4 }, border: { display: false } },
+                    x: { grid: { display: false }, ticks: { font: { weight: '700', size: 12 }, color: '#475569' }, border: { display: false } }
                 }
             }
         });
     }
-    const ctx = document.getElementById('chartMain').getContext('2d');
-    new Chart(ctx, {
+
+    new Chart(document.getElementById('chartMain').getContext('2d'), {
         type: 'doughnut',
         data: {
             labels: [{% for item in leads_por_categoria %}'{{ item.nome }}',{% endfor %}],
             datasets: [{
                 data: [{% for item in leads_por_categoria %}{{ item.total }},{% endfor %}],
-                backgroundColor: ['#C8A84B', '#1e293b', '#475569', '#94a3b8', '#cbd5e1'],
-                hoverOffset: 20,
-                borderWidth: 0
+                backgroundColor: ['#C8A84B','#1e293b','#475569','#94a3b8','#cbd5e1'],
+                hoverOffset: 20, borderWidth: 0
             }]
         },
         options: {
-            maintainAspectRatio: false,
-            cutout: '80%',
-            plugins: {
-                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 25, font: { size: 11, weight: '600' } } }
-            }
+            maintainAspectRatio: false, cutout: '80%',
+            plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 25, font: { size: 11, weight: '600' } } } }
         }
     });
 </script>

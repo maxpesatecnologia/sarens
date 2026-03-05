@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
-from django.db.models import Sum, F, Count
+from django.db.models import Sum, F, Count, Q
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -23,29 +23,22 @@ def dashboard(request):
 
     operacoes_ativas   = Operacao.objects.filter(data_inicio__lte=hoje, data_fim__gte=hoje).count()
 
+    # ── Lógica Financeira (Ajustada para bater com a lista) ──
+    # Filtramos por operações que terminam no mês atual OU que começaram no mês atual
     fin_mes = Financeiro.objects.filter(
-        operacao__data_inicio__month=mes,
-        operacao__data_inicio__year=ano
+        Q(operacao__data_fim__month=mes, operacao__data_fim__year=ano) |
+        Q(operacao__data_inicio__month=mes, operacao__data_inicio__year=ano)
     ).aggregate(
         total_receita=Sum('receita'),
         total_despesa=Sum('despesa'),
     )
 
-    # Se nao ha dados no mes atual, busca o mes mais recente com dados
+    # Se não há dados no mês atual, busca o acumulado geral para não zerar o dashboard
     if not fin_mes['total_receita']:
-        ultimo = Financeiro.objects.select_related('operacao').order_by(
-            '-operacao__data_inicio'
-        ).first()
-        if ultimo:
-            mes_ref = ultimo.operacao.data_inicio.month
-            ano_ref = ultimo.operacao.data_inicio.year
-            fin_mes = Financeiro.objects.filter(
-                operacao__data_inicio__month=mes_ref,
-                operacao__data_inicio__year=ano_ref
-            ).aggregate(
-                total_receita=Sum('receita'),
-                total_despesa=Sum('despesa'),
-            )
+        fin_mes = Financeiro.objects.aggregate(
+            total_receita=Sum('receita'),
+            total_despesa=Sum('despesa'),
+        )
 
     def fmt(val):
         if val is None:
@@ -112,7 +105,7 @@ def dashboard(request):
         'leads_novos':          leads_novos,
         'operacoes_andamento':  operacoes_andamento,
         'ranking_analistas':    ranking_analistas,
-        'title':                'Dashboard', # Define o título no cabeçalho do sistema
+        'title':                'Dashboard',
         'receita_grafico':      float(r),
         'despesa_grafico':      float(d),
     }
@@ -134,7 +127,7 @@ def receber_contato(request):
                 subcategoria=data.get('subcategoria', 'outro'),
                 mensagem=data.get('mensagem', ''),
             )
-            return JsonResponse({'status': 'sucesso', 'mensagem': 'Lead salvo com sucesso!'}, status=201)
+            return JsonResponse({'status': 'sucesso', 'mensagem': 'Lead saved!'}, status=201)
         except Exception as e:
             return JsonResponse({'status': 'erro', 'mensagem': str(e)}, status=400)
-    return JsonResponse({'status': 'erro', 'mensagem': 'Método não permitido'}, status=405)
+    return JsonResponse({'status': 'erro', 'mensagem': 'Method not allowed'}, status=405)
