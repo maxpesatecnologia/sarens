@@ -100,7 +100,6 @@
                 </div>
             </div>
 
-            <!-- FORMULÁRIO ATUALIZADO -->
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
                     <label class="form-label">Nome completo ou empresa</label>
@@ -116,8 +115,6 @@
                         <input type="text" id="telefone" class="form-control" placeholder="(11) 99999-9999" maxlength="15" required>
                     </div>
                 </div>
-
-                <!-- CATEGORIA — substitui o campo "Assunto" -->
                 <div class="form-group">
                     <label class="form-label">Categoria</label>
                     <select id="categoria" class="form-control" required>
@@ -129,18 +126,16 @@
                         <option value="outro">Outro / Orçamento Personalizado</option>
                     </select>
                 </div>
-
-                <!-- SUBCATEGORIA — aparece dinamicamente -->
                 <div class="form-group" id="subcategoria-group" style="display:none;">
                     <label class="form-label">Equipamento de interesse</label>
                     <select id="subcategoria" class="form-control">
                         <option value="" disabled selected>Selecione o equipamento</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">Descreva sua necessidade</label>
-            <textarea id="mensagem" class="form-control" rows="5" placeholder="Diga como podemos te ajudar!" maxlength="3000" required></textarea></div>
+                    <textarea id="mensagem" class="form-control" rows="5" placeholder="Diga como podemos te ajudar!" maxlength="3000" required></textarea>
+                </div>
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar Solicitação</button>
             </form>
         </div>
@@ -151,18 +146,32 @@
             <div class="map-header">
                 <h3>Nossa <span class="text-accent">Localização</span></h3>
             </div>
-            <div class="map-wrapper" style="position: relative; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--gold); line-height: 0; box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);">
+            <div class="map-wrapper" style="position: relative; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--gold); line-height: 0; box-shadow: 1px 1px 10px rgba(0,0,0,0.1);">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.334057639455!2d-43.274579423773195!3d-22.678604329688433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9979cebeb3a81b%3A0x42c39d6182df37be!2sAv.%20Primavera%2C%20156%20-%20Jardim%20Primavera%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025215-255!5e0!3m2!1spt-BR!2sbr!4v1709000000000!5m2!1spt-BR!2sbr" 
                     width="100%" height="450" 
                     style="border:0; filter: grayscale(1) invert(0.92) contrast(1.2) sepia(0.1);" 
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-                <div class="map-overlay-text" style="position: absolute; width: 50%; margin: auto; bottom: 20px; left: 20px; right: 20px; background: rgba(5, 5, 5, 0.9); padding: 1.5rem; border-radius: var(--r-sm); border-left: 4px solid var(--gold); z-index: 2;">
-                    <i class="ph ph-map-pin-area" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
-                    <p style="color: #fff; margin-bottom: 1rem; font-size: 0.95rem;">Av. Primavera, 156 - Jardim Primavera, Duque de Caxias - RJ, 25215-255</p>
-                    <a href="https://maps.app.goo.gl/dX9E9QN3KwKMjPfP8" target="_blank" class="btn btn-primary">
-                        Abrir no Google Maps <i class="ph ph-arrow-square-out" style="color: rgba(0, 0, 0, 0.946);"></i>
+                <!-- Overlay: centralizado no desktop, full width no mobile -->
+                <div class="map-overlay-text" style="
+                    position: absolute;
+                    bottom: 20px;
+                    left: 20px;
+                    right: 20px;
+                    max-width: 560px;
+                    margin: 0 auto;
+                    background: rgba(5,5,5,0.9);
+                    padding: 1.5rem 2rem;
+                    border-radius: var(--r-sm);
+                    border-left: 4px solid var(--gold);
+                    z-index: 2;
+                    text-align: center;
+                ">
+                    <i class="ph ph-map-pin-area" style="color: var(--gold); font-size: 2rem; margin-bottom: 0.75rem; display: block;"></i>
+                    <p style="color: #fff; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.6;">Av. Primavera, 156 - Jardim Primavera, Duque de Caxias - RJ, 25215-255</p>
+                    <a href="https://maps.app.goo.gl/dX9E9QN3KwKMjPfP8" target="_blank" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem;">
+                        Abrir no Google Maps <i class="ph ph-arrow-square-out" style="color: rgba(0, 0, 0, 0.946);font-size: 30px; padding-top: 10px; font-weight: 500;"></i>
                     </a>
                 </div>
             </div>

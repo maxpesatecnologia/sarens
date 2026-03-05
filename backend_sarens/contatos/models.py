@@ -159,7 +159,7 @@ class Lead(models.Model):
     class Status(models.TextChoices):
         NOVO           = 'novo',           'Novo'
         EM_ATENDIMENTO = 'em_atendimento', 'Em atendimento'
-        FECHADO        = 'fechado',        'Fechado / Ganho'
+        FECHADO        = 'fechado',        'Fechado'
         PERDIDO        = 'perdido',        'Perdido'
 
     nome                 = models.CharField(max_length=200, verbose_name='Nome / Empresa')
@@ -242,7 +242,7 @@ class Financeiro(models.Model):
 
     class StatusPagamento(models.TextChoices):
         PENDENTE = 'pendente', 'Pendente'
-        PARCIAL  = 'parcial',  'Parcialmente pago'
+        PARCIAL  = 'parcial',  'Parcial'
         PAGO     = 'pago',     'Pago'
 
     operacao    = models.OneToOneField(Operacao, on_delete=models.CASCADE, related_name='financeiro', verbose_name='Operação')

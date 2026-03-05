@@ -133,6 +133,7 @@ body:hover .cursor-follower { opacity: 1; }
 .btn-primary {
   background: var(--gold);
   color: var(--black);
+  margin-top: 20px;
 }
 
 
@@ -1726,10 +1727,13 @@ select.form-control { appearance: none; cursor: pointer; }
 .fleet-bg-1       { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
 .fleet-bg-2       { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
 .fleet-bg-3       { background-image: url('img/empilhadeira.png');       background-size: cover; background-position: center; }
-.fleet-item-img-1 { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
-.fleet-item-img-2 { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
-.fleet-item-img-3 { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
-.fleet-item-img-4 { background-image: url('img/escavadeiras-logo.jpg');       background-size: cover; background-position: center; }
+.fleet-item-img-1 { background-image: url('img/caminhao-munck-img2.jpg');             background-size: cover; background-position: center; }
+.fleet-item-img-2 { background-image: url('img/guindastes-img2.jpeg'); background-size: cover; background-position: center; }
+.fleet-item-img-6 { background-image: url('img/empilhadeira.png'); background-size: cover; background-position: center; }
+.fleet-item-img-3 { background-image: url('img/escavadeiras-logo.jpg');          background-size: cover; background-position: center; }
+.fleet-item-img-7 { background-image: url('img/guindastes-img3.jpg');          background-size: cover; background-position: center; }
+.fleet-item-img-4 { background-image: url('img/caminhao-munck.jpg');       background-size: cover; background-position: center; }
+.fleet-item-img-5 { background-image: url('img/pa-carregadeira-img.png');       background-size: cover; background-position: center; }
 .service-detail-img-1 { background-image: url('img/guindastes.jpeg');             background-size: cover; background-position: center; }
 .service-detail-img-2 { background-image: url('img/movimentacao-industrial.png'); background-size: cover; background-position: center; }
 .service-detail-img-3 { background-image: url('img/caminhao-munck.jpg');          background-size: cover; background-position: center; }
