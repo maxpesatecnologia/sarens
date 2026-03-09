@@ -24,3 +24,4 @@ urlpatterns = [
     path('api/contatos/', receber_contato, name='receber_contato'),
     path('api/contatos/enviar/', receber_contato, name='receber_contato'),
 ]
+ 
