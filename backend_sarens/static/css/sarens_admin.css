@@ -240,3 +240,7 @@ nav[x-show="openUserLinks"] button:hover,
 nav[x-show="openUserLinks"] a:hover { background-color: var(--gold-bg) !important; }
 nav[x-show="openUserLinks"] a[href*="logout"],
 nav[x-show="openUserLinks"] a[href*="logout"] span { color: #dc2626 !important; font-weight: 600 !important; }
+
+
+
+

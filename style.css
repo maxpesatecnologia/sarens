@@ -1070,6 +1070,7 @@ body:hover .cursor-follower { opacity: 1; }
 .mvv-card:hover::before {
   opacity: 1; 
 }
+
 .mvv-icon {
   width: 52px; height: 52px;
   background: rgba(200,168,75,0.1);
