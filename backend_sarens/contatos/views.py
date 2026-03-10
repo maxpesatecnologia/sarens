@@ -53,9 +53,9 @@ def dashboard(request):
     # ── Leads por categoria ───────────────────────────────
     CORES = {
         'guindastes':    '#3b82f6',
-        'munck':         '#a855f7',
+        'munck':         "#742fb4",
         'empilhadeira':  '#f97316',
-        'linha-amarela': '#eab308',
+        'linha-amarela': "#926e02",
         'outro':         '#6b7280',
     }
 
